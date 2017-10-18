@@ -1,0 +1,28 @@
+<div class="container" style="border: dashed;">
+	<div class="row">
+		<div class="col">
+			<div id="qpreview{{$index}}"></div>
+		</div>
+	</div>
+	<div class="row" ng-hide="questionModel.images.paths == null || questionModel.images.paths == []" >
+		<div class="col">
+			<div ng-repeat="path in questionModel.images.paths">
+				<img height="50px" width="70px" alt="" ng-src="{{path}}">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col"><div id="qoption0{{$index}}"></div></div>
+		<div class="col"><div id="qoption1{{$index}}"></div></div>
+	</div>
+	<div class="row">
+		<div class="col"><div id="qoption2{{$index}}"></div></div>
+		<div class="col"><div id="qoption3{{$index}}"></div></div>
+	</div>
+	<div class="row">
+		<div class="col-7"></div>
+		<div class="col" ng-show="questionModel.year != ''">[Gate {{questionModel.year}}]</div>
+		<div class="col" ng-show="questionModel.marks != ''">[{{questionModel.marks}} Marks]</div>
+		<div class="col" ng-show="questionModel.type != ''">[{{questionModel.type}}]</div>
+	</div>
+</div>

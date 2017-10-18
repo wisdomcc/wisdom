@@ -1,0 +1,12 @@
+.filterwrap {
+	font-family: arial;
+	font-size: 12px;
+	line-height: 150%;
+}
+
+.filter {
+	border: 1px solid #ddd;
+	background: #eee;
+	padding: 10px;
+	display: inline-block;
+}

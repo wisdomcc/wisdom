@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="pragma" content="no-cache" />
+
+<title>Dynamic Table</title>
+<link type="text/css" href="../../css/bootstrap.css" rel="stylesheet">
+<link type="text/css" href="../css/form.css" rel="stylesheet">
+<script type="text/javascript"
+	src="../../angularjs/1.6.5/angular.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module('angularjs-starter', []);
+
+	app.controller('MainCtrl', function($scope) {
+
+		$scope.choices = [ {
+			id : 'choice1'
+		}, {
+			id : 'choice2'
+		} ];
+
+		$scope.addNewChoice = function() {
+			var newItemNo = $scope.choices.length + 1;
+			$scope.choices.push({
+				'id' : 'choice' + newItemNo
+			});
+		};
+
+		$scope.removeChoice = function() {
+			var lastItem = $scope.choices.length - 1;
+			$scope.choices.splice(lastItem);
+		};
+
+	});
+</script>
+<body>
+	<div ng-app="angularjs-starter" ng-controller="MainCtrl">
+		<fieldset data-ng-repeat="choice in choices">
+			<select>
+				<option>Mobile</option>
+				<option>Office</option>
+				<option>Home</option>
+			</select> <input type="text" ng-model="choice.name" name=""
+				placeholder="Enter mobile number">
+			<button class="remove" ng-show="$last" ng-click="removeChoice()">-</button>
+		</fieldset>
+		<button class="addfields" ng-click="addNewChoice()">Add
+			fields</button>
+		<div id="choicesDisplay">{{ choices }}</div>
+	</div>
+</body>
+</html>

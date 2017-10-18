@@ -1,0 +1,60 @@
+<div class="row">
+	<div class="col"><input type="button"
+		class="btn btn-primary addnew float-sm-left"
+		value="Related To" disabled="disabled"></div>
+</div>
+<div class="row form-group">
+	<div class="col-2">Exam</div>
+	<div class="col-2">Stream</div>
+	<div class="col-2">Subject</div>
+	<div class="col-3">Topic</div>
+	<div class="col-3">Sub-Topic</div>
+</div>
+<div class="row form-group">
+	<div class="col-2">
+		<select class="form-control" ng-model="input.selectedExam" ng-change="onExamSelect(input.selectedExam)" ng-options="exam.exam for exam in relatedFieldParams.exams">
+		</select>
+	</div>
+	<div class="col-2">
+		<select class="form-control" ng-model="input.selStream" ng-change="onChangeStream(input.selStream)" ng-options="stream.stream for stream in input.selectedExam.streams">
+		</select>
+	</div>
+	<div class="col-2">
+		<select class="form-control" ng-model="input.selSubject" ng-change="onsubjSelect(input.selSubject)"
+		ng-options="subj.subject for subj in input.selStream.subjects">
+		</select>
+	</div>
+	<div class="col-3">
+		<select class="form-control" ng-model="input.selTopic" ng-change="onTopicSelect(input.selTopic)"
+		ng-options="topic.topic for topic in input.selSubject.topics"></select>
+	</div>
+	<div class="col-3">
+		<select class="form-control" ng-model="input.selSubTopic"
+		ng-options="subT.subTopic for subT in input.selTopic.subTopics">
+		</select>
+	</div>
+</div>
+<div class="row form-group">
+	<div class="col">
+		<input type="button" ng-click="addRelatedField(questionModel)"
+						class="btn btn-primary remove float-sm-right" value="+" />
+	</div>
+</div>
+<div class="row form-group" ng-repeat="exam in questionModel.relatedTo.exam track by $index">
+	<div class="col-1"><input type="text" value="{{questionModel.relatedTo.exam[$index]}}" class="form-control" disabled/></div>
+	<div class="col-1"><input type="text" value="{{questionModel.relatedTo.stream[$index]}}" class="form-control" disabled/></div>
+	<div class="col-3"><input type="text" value="{{questionModel.relatedTo.subject[$index]}}" class="form-control" disabled/></div>
+	<div class="col-3"><input type="text" value="{{questionModel.relatedTo.topic[$index]}}" class="form-control" disabled/></div>
+	<div class="col-3"><input type="text" value="{{questionModel.relatedTo.subTopic[$index]}}" class="form-control" disabled/></div>								
+	<div class="col-1"><input class="btn btn-danger remove float-sm-right" type="button"
+		ng-click="removeRelatedField(questionModel, $index)" value="-" /></div>
+</div>
+<div class="row form-group">
+	<div class="col">Tags</div>
+	<div class="col-6">
+		<select multiple class="form-control" ng-model="questionModel.relatedTo.tags" ng-options="x for x in tags">
+		</select>
+	</div>
+	<div class="col">
+	</div>
+</div>
