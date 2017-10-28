@@ -3,6 +3,8 @@ package com.wisdom.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,9 +48,10 @@ public class QuestionController {
 	}
 
 	@RequestMapping(path = "/uploadImage", method = RequestMethod.POST)
-	public ResponseEntity<String> uploadImage(@RequestParam(value = "file") MultipartFile file,
+	public ResponseEntity<String> uploadImage(HttpServletResponse res, @RequestParam(value = "file") MultipartFile file,
 			@RequestParam(value = "questionid") String questionId, @RequestParam(value = "option") String option)
 			throws IOException {
+		res.setHeader("Access-Control-Allow-Origin", "*");
 		String uploadedFilePath = uploadService.uploadImage(file, questionId, option);
 		if (uploadedFilePath != null) {
 			return new ResponseEntity<String>("{\"path\":\"" + uploadedFilePath + "\"}", HttpStatus.OK);
@@ -57,7 +60,8 @@ public class QuestionController {
 	}
 
 	@RequestMapping(path = "/viewAllExam", method = RequestMethod.GET)
-	public List<Exam> uploadImage() {
+	public List<Exam> uploadImage(HttpServletResponse res) {
+		res.setHeader("Access-Control-Allow-Origin", "*");
 		return examDao.findAll();
 	}
 
