@@ -20,11 +20,11 @@ import org.springframework.security.web.authentication.ExceptionMappingAuthentic
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy;
 import org.springframework.security.web.session.InvalidSessionStrategy;
-import org.springframework.security.web.session.SimpleRedirectInvalidSessionStrategy;
 
 import com.wisdom.security.filter.AllRequestsAllowingCORSFilter;
 import com.wisdom.security.filter.CORSFilter;
 import com.wisdom.security.strategy.CustomAuthenticationSuccessRedirectStrategy;
+import com.wisdom.security.strategy.CustomInvalidSessionStrategy;
 import com.wisdom.service.CustomUserDetailsService;
 
 @Configuration
@@ -34,10 +34,20 @@ public class WisdomWebSecurityBeansConfiguration {
 	public CORSFilter corsFilter() {
 		return new AllRequestsAllowingCORSFilter();
 	}
+	
+	/*@Bean
+	public CORSFilter corsFilter() {
+		return new CORSFilter();
+	}*/
 
-	@Bean
+	/*@Bean
 	public InvalidSessionStrategy redirectStrategyInvalidSessionStrategy(){
 		return new SimpleRedirectInvalidSessionStrategy("/user/login");
+	}*/
+	
+	@Bean
+	public InvalidSessionStrategy customInvalidSessionStrategy(){
+		return new CustomInvalidSessionStrategy();
 	}
 	
 	@Bean

@@ -5,6 +5,8 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
+import com.wisdom.utility.json.JacksonUtil;
+
 public class WisdomUser extends User {
 
 	/**
@@ -47,6 +49,11 @@ public class WisdomUser extends User {
 
 	public void setMaxConcurrentSessions(int maxConcurrentSessions) {
 		this.maxConcurrentSessions = maxConcurrentSessions;
+	}
+	
+	@Override
+	public String toString() {
+		return JacksonUtil.toString(this);
 	}
 
 }

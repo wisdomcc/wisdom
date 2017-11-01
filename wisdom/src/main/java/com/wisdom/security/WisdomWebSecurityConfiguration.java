@@ -12,6 +12,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 import org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter;
+import org.springframework.security.web.session.InvalidSessionStrategy;
 
 import com.wisdom.security.filter.CORSFilter;
 
@@ -37,21 +38,24 @@ public class WisdomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+	@Autowired
+	private InvalidSessionStrategy invalidSessionStrategy;
+	
 	@Override
 	public void configure(HttpSecurity httpSecurity) throws Exception{
 		httpSecurity.httpBasic().disable()
 		//.and()
 		.authorizeRequests()
-		.antMatchers("/user/login","/user/registration").permitAll()
+		.antMatchers("/login","/registration","/homepage").permitAll()
 		.anyRequest().authenticated()
 		.and()
-		.formLogin().loginPage("/user/login")
+		.formLogin().loginPage("/login")
 			.usernameParameter("username").passwordParameter("password")
 			.failureHandler(authenticationFailureHandler)
 			.successHandler(authenticationSuccessHandler)
 		.and()
 		.sessionManagement().sessionAuthenticationStrategy(sessionAuthenticationStrategy)
-			//.invalidSessionStrategy(invalidSessionStrategy)
+		.invalidSessionStrategy(invalidSessionStrategy)
 		.and()
 		.addFilterBefore(corsFilter, WebAsyncManagerIntegrationFilter.class)
 		.csrf().disable();

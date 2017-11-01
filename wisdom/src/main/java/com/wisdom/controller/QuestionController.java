@@ -51,7 +51,6 @@ public class QuestionController {
 	public ResponseEntity<String> uploadImage(HttpServletResponse res, @RequestParam(value = "file") MultipartFile file,
 			@RequestParam(value = "questionid") String questionId, @RequestParam(value = "option") String option)
 			throws IOException {
-		res.setHeader("Access-Control-Allow-Origin", "*");
 		String uploadedFilePath = uploadService.uploadImage(file, questionId, option);
 		if (uploadedFilePath != null) {
 			return new ResponseEntity<String>("{\"path\":\"" + uploadedFilePath + "\"}", HttpStatus.OK);
@@ -61,7 +60,6 @@ public class QuestionController {
 
 	@RequestMapping(path = "/viewAllExam", method = RequestMethod.GET)
 	public List<Exam> uploadImage(HttpServletResponse res) {
-		res.setHeader("Access-Control-Allow-Origin", "*");
 		return examDao.findAll();
 	}
 
