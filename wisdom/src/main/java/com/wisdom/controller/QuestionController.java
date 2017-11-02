@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.wisdom.bean.QuestionFetchBean;
 import com.wisdom.bean.QuestionInsertBean;
@@ -61,11 +60,6 @@ public class QuestionController {
 	@RequestMapping(path = "/viewAllExam", method = RequestMethod.GET)
 	public List<Exam> uploadImage(HttpServletResponse res) {
 		return examDao.findAll();
-	}
-
-	@RequestMapping(path = "/submit", method = RequestMethod.GET)
-	public ModelAndView getQuestionSubmitForm() {
-		return new ModelAndView("redirect:/login/index.html");
 	}
 
 }

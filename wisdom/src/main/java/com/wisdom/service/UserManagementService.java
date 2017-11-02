@@ -6,7 +6,9 @@ public interface UserManagementService {
 	
 	public UserLogin findUserByUsername(String username);
 	//public UserLogin findUserByRandomToken(String randomToken);
-	//public void addUser(UserBean userbean);
+	public void addUser(String username, String emailId, String password);
+	public boolean isUsernameExisting(String username);
+	public boolean isEmailExisting(String emailId);
 	//public void deleteUser(int userId);
 	//public void resetLock(String username);
 	//public void handleFailedLogin(String username);

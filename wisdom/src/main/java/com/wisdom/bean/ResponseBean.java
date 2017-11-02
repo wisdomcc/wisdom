@@ -2,15 +2,17 @@ package com.wisdom.bean;
 
 import com.wisdom.utility.json.JacksonUtil;
 
-public class ErrorBean {
+public class ResponseBean {
 
-	public ErrorBean(String message, String description) {
+	public ResponseBean(String message, String description) {
 		this.message = message;
 		this.description = description;
 	}
+	public ResponseBean(){}
 	
 	private String message;
 	private String description;
+	private String type;
 	
 	public String getMessage() {
 		return message;
@@ -24,9 +26,16 @@ public class ErrorBean {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	
 	@Override
 	public String toString() {
 		return JacksonUtil.toString(this);
 	}
+	
 }

@@ -22,14 +22,41 @@ public class UserManagementServiceImpl implements UserManagementService{
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	//@PreAuthorize()
-	/*@Override
-	public void addUser(UserBean userBean){
-		UserLogin userLogin = new UserLogin(userBean.getUsername(), userBean.getEmailId(), userBean.getTenantId(), userBean.getTenantName(), userBean.getLockExpirationTimeInMin(), userBean.getMaxCountForLock(), userBean.getPasswordExpireDays(), userBean.getEmrGlobalId(), userBean.getTokenExpireDate());
+	@Override
+	public void addUser(String username, String email, String password){
+		UserLogin userLogin = new UserLogin(username, email, "student", passwordEncoder.encode(password));
 		userLoginDao.save(userLogin);
 	}
 	
 	@Override
+	public UserLogin findUserByUsername(String username) {
+		UserLogin userLogin = userLoginDao.findByUsername(username);
+		if(userLogin != null){
+			userLogin.checkAndResetPreliminaries();
+			userLoginDao.save(userLogin);
+		}
+		return userLogin;
+	}
+
+	@Override
+	public boolean isUsernameExisting(String username) {
+		UserLogin userLogin = userLoginDao.findByUsername(username);
+		if(userLogin != null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean isEmailExisting(String emailId) {
+		UserLogin userLogin = userLoginDao.findByEmailId(emailId);
+		if(userLogin != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	/*@Override
 	public void deleteUser(int id){
 		//TODO
 	}
@@ -134,18 +161,8 @@ public class UserManagementServiceImpl implements UserManagementService{
 			userLoginDao.save(userLogin);
 		}
 	}
-*/
-	@Override
-	public UserLogin findUserByUsername(String username) {
-		UserLogin userLogin = userLoginDao.findByUsername(username);
-		if(userLogin != null){
-			userLogin.checkAndResetPreliminaries();
-			userLoginDao.save(userLogin);
-		}
-		return userLogin;
-	}
 
-	/*@Override
+	@Override
 	public UserLogin findUserByRandomToken(String randomToken) {
 		UserLogin userLogin = userLoginDao.findByRandomToken(randomToken);
 		return userLogin;

@@ -19,26 +19,25 @@ public class UserLogin {
 	
 	public UserLogin(){}
 	
-	public UserLogin(String username, String emailId, String role, int lockExpirationTimeInMin, 
-			int maxCountForLock, int passwordExpireDays, Date tokenExpiryDate){
+	public UserLogin(String username, String emailId, String role, String password){
 		
 		this.username = username;
-		this.password = "$2a$10$qAfD6rqe0OuoC7NhlO3bA.I.2hfWYHfJ/3dqwJZIRZAJUP3eSPtV6";
+		this.password = password;
 		this.emailId = emailId;
 		this.role = role;
 		this.isLocked = false;
-		this.lockExpirationTimeInMin = lockExpirationTimeInMin;
+		this.lockExpirationTimeInMin = 10;
 		this.lastLoginAttemptDateTime = Calendar.getInstance().getTime();
-		this.maxCountForLock = maxCountForLock;
+		this.maxCountForLock = 5;
 		this.loginFailedCount = 0;
-		this.status = DISABLED;
+		this.status = ENABLED;
 		this.reasonForStatus = "Newly created user.";
-		this.isPasswordExpired = true;
+		this.isPasswordExpired = false;
 		this.lastPasswordChangedDate = Calendar.getInstance().getTime();
-		this.passwordExpireDays = passwordExpireDays;
-		this.passwordResetFlag = true;
+		this.passwordExpireDays = 900;
+		this.passwordResetFlag = false;
 		this.maxConcurrentSessions=1;
-		createRandomToken(tokenExpiryDate);
+		createRandomToken(Calendar.getInstance().getTime());
 	}
 	 
 	
