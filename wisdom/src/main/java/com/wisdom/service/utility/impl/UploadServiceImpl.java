@@ -27,7 +27,7 @@ public class UploadServiceImpl implements UploadService {
 			String extension = origFileName.substring(origFileName.indexOf("."), origFileName.length());
 		    File file = new File(destinationPath + "/"  + "image" + fileCount + extension);
 		    multipartFile.transferTo(new File(file.getAbsolutePath()));
-		    destinationPath = destinationPath.replaceAll("src/main/resources/static", "..");
+		    destinationPath = destinationPath.replaceAll("src/main/resources/static", "");
 		    return destinationPath + "/image" + fileCount + extension;
 		} catch (IOException e) {
 			return null;
