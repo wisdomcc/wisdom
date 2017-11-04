@@ -15,9 +15,10 @@ public interface QuestionService {
 
 	public List<Question> getQuestions(QuestionFetchBean questionRequestBean) throws FetchException;
 	public List<Question> getQuestions(int id) throws FetchException;
-	public boolean updateQuestion(QuestionUpdateBean questionUpdateBean) throws UpdateException;
-	public boolean insertQuestion(QuestionInsertBean questionInsertBean) throws InsertException;
-	public boolean insertQuestions(List<QuestionInsertBean> questionInsertBeans) throws InsertException;
+	public boolean updateQuestion(QuestionUpdateBean questionUpdateBean, String username) throws UpdateException;
+	public boolean updateQuestions(List<QuestionUpdateBean> questionUpdateBean, String username) throws UpdateException;
+	public boolean insertQuestion(QuestionInsertBean questionInsertBean, String username) throws InsertException;
+	public boolean insertQuestions(List<QuestionInsertBean> questionInsertBeans, String username) throws InsertException;
 	public void print(List<Question> questions) throws PrintException;
 	
 }

@@ -1,6 +1,7 @@
 package com.wisdom.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -61,6 +62,18 @@ public class Question implements Serializable {
 	@Type(type = "json")
 	@Column(name = "related_to", columnDefinition = "json")
 	private RelatedTo relatedTo;
+	
+	@Column(name = "inserted_by")
+	private String insertedBy;
+	
+	@Column(name = "inserted_date")
+	private Date insertedDate;
+	
+	@Column(name = "updated_by")
+	private String updatedBy;
+
+	@Column(name = "updated_date")
+	private Date updatedDate;
 	
 	@OneToOne
 	@JoinColumn(name = "id")
@@ -137,6 +150,38 @@ public class Question implements Serializable {
 
 	public void setRelatedTo(RelatedTo relatedTo) {
 		this.relatedTo = relatedTo;
+	}
+	
+	public String getInsertedBy() {
+		return insertedBy;
+	}
+
+	public void setInsertedBy(String insertedBy) {
+		this.insertedBy = insertedBy;
+	}
+
+	public Date getInsertedDate() {
+		return insertedDate;
+	}
+
+	public void setInsertedDate(Date insertedDate) {
+		this.insertedDate = insertedDate;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Date getUpdateDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
 	}
 	
 	public Answer getAnswerId() {

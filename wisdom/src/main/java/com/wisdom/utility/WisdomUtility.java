@@ -1,5 +1,6 @@
 package com.wisdom.utility;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +12,7 @@ import com.wisdom.entity.Question;
 
 public class WisdomUtility {
 
-	public static Question buildQuestion(QuestionInsertBean questionInsertBean) {
+	public static Question buildQuestion(QuestionInsertBean questionInsertBean, String username) {
 		Question question = new Question();
 		question.setId(questionInsertBean.getId());
 		question.setHints(questionInsertBean.getHints());
@@ -22,10 +23,12 @@ public class WisdomUtility {
 		question.setYear(questionInsertBean.getYear());
 		question.setMarks(questionInsertBean.getMarks());
 		question.setRelatedTo(questionInsertBean.getRelatedTo());
+		question.setInsertedBy(username);
+		question.setInsertedDate(new Date(System.currentTimeMillis()));
 		return question;
 	}
 	
-	public static Question buildQuestion(QuestionUpdateBean questionUpdateBean) {
+	public static Question buildQuestion(QuestionUpdateBean questionUpdateBean, String username) {
 		Question question = new Question();
 		question.setId(questionUpdateBean.getId());
 		question.setHints(questionUpdateBean.getHints());
@@ -36,6 +39,8 @@ public class WisdomUtility {
 		question.setYear(questionUpdateBean.getYear());
 		question.setMarks(questionUpdateBean.getMarks());
 		question.setRelatedTo(questionUpdateBean.getRelatedTo());
+		question.setUpdatedBy(username);
+		question.setUpdatedDate(new Date(System.currentTimeMillis()));
 		return question;
 	}
 	

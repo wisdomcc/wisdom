@@ -40,21 +40,30 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public boolean updateQuestion(QuestionUpdateBean questionUpdateBean) throws UpdateException {
-		Question question = WisdomUtility.buildQuestion(questionUpdateBean);
+	public boolean updateQuestion(QuestionUpdateBean questionUpdateBean, String username) throws UpdateException {
+		Question question = WisdomUtility.buildQuestion(questionUpdateBean, username);
 		return updateService.update(question);
+	}
+	
+	@Override
+	public boolean updateQuestions(List<QuestionUpdateBean> questionUpdateBeans, String username) throws UpdateException {
+		for(QuestionUpdateBean questionUpdateBean : questionUpdateBeans) {
+			Question question = WisdomUtility.buildQuestion(questionUpdateBean, username);
+			updateService.update(question);
+		}
+		return true;
 	}
 
 	@Override
-	public boolean insertQuestion(QuestionInsertBean questionInsertBean) throws InsertException {
-		Question question = WisdomUtility.buildQuestion(questionInsertBean);
+	public boolean insertQuestion(QuestionInsertBean questionInsertBean, String username) throws InsertException {
+		Question question = WisdomUtility.buildQuestion(questionInsertBean, username);
 		return insertService.insert(question);
 	}
 	
 	@Override
-	public boolean insertQuestions(List<QuestionInsertBean> questionInsertBeans) throws InsertException {
+	public boolean insertQuestions(List<QuestionInsertBean> questionInsertBeans, String username) throws InsertException {
 		for(QuestionInsertBean questionInsertBean : questionInsertBeans) {
-			Question question = WisdomUtility.buildQuestion(questionInsertBean);
+			Question question = WisdomUtility.buildQuestion(questionInsertBean, username);
 			insertService.insert(question);
 		}
 		return true;

@@ -1,6 +1,7 @@
 package com.wisdom.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.wisdom.bean.QuestionFetchBean;
 import com.wisdom.bean.QuestionInsertBean;
+import com.wisdom.bean.QuestionUpdateBean;
 import com.wisdom.dao.ExamDao;
 import com.wisdom.entity.Exam;
 import com.wisdom.entity.Question;
@@ -42,8 +44,13 @@ public class QuestionController {
 	}
 
 	@RequestMapping(path = "/insert", method = RequestMethod.POST)
-	public boolean insertQuestion(@RequestBody List<QuestionInsertBean> questionInsertBeanList) {
-		return questionService.insertQuestions(questionInsertBeanList);
+	public boolean insertQuestion(Principal principal, @RequestBody List<QuestionInsertBean> questionInsertBeanList) {
+		return questionService.insertQuestions(questionInsertBeanList, principal.getName());
+	}
+	
+	@RequestMapping(path = "/update", method = RequestMethod.POST)
+	public boolean updateQuestion(Principal principal, @RequestBody List<QuestionUpdateBean> questionUpdateBeanList) {
+		return questionService.updateQuestions(questionUpdateBeanList, principal.getName());
 	}
 
 	@RequestMapping(path = "/uploadImage", method = RequestMethod.POST)
