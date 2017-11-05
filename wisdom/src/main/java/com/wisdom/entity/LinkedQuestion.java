@@ -1,14 +1,12 @@
 package com.wisdom.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,25 +19,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.wisdom.bean.QuestionImages;
 import com.wisdom.bean.QuestionOptions;
-import com.wisdom.bean.RelatedTo;
 import com.wisdom.utility.json.JacksonUtil;
 import com.wisdom.utility.json.JsonStringType;
 
 @Entity
-@Table(name = "question")
+@Table(name = "linked_question")
 @TypeDefs({ @TypeDef(name = "json", typeClass = JsonStringType.class) })
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class Question implements Serializable {
+public class LinkedQuestion implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 21L;
+	private static final long serialVersionUID = 11L;
 
 	@Id
 	@Column(name = "id")
 	private long id;
+	
+	@Column(name = "parent_question_id")
+	private long parentQuestionId;
 	
 	@Column(name = "question", columnDefinition = "text")
 	private String question;
@@ -47,10 +44,7 @@ public class Question implements Serializable {
 	@Type(type = "json")
 	@Column(name = "images", columnDefinition = "json")
 	private QuestionImages images;
-
-	@Column(name = "type")
-	private String type;
-
+	
 	@Type(type = "json")
 	@Column(name = "options", columnDefinition = "json")
 	private QuestionOptions options;
@@ -60,31 +54,10 @@ public class Question implements Serializable {
 	
 	@Column(name = "marks")
 	private int marks;
-
-	@Column(name = "year")
-	private int year;
-
-	@Type(type = "json")
-	@Column(name = "related_to", columnDefinition = "json")
-	private RelatedTo relatedTo;
 	
-	@Column(name = "inserted_by")
-	private String insertedBy;
-	
-	@Column(name = "inserted_date")
-	private Date insertedDate;
-	
-	@Column(name = "updated_by")
-	private String updatedBy;
-
-	@Column(name = "updated_date")
-	private Date updatedDate;
-	
-	@OneToMany(mappedBy = "questionId")
-	private List<LinkedQuestion> linkedQuestions;
-	
-	@OneToOne(mappedBy = "paragraphId")
-	private QuestionParagraph paragraph;
+	@ManyToOne
+	@JoinColumn(name = "parent_question_id", referencedColumnName = "id", insertable = false, updatable = false)
+	private Question questionId;
 	
 	@OneToOne
 	@JoinColumn(name = "id", referencedColumnName="question_id")
@@ -99,12 +72,12 @@ public class Question implements Serializable {
 		this.id = id;
 	}
 
-	public String getType() {
-		return type;
+	public long getParentQuestionId() {
+		return parentQuestionId;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setParentQuestionId(long parentQuestionId) {
+		this.parentQuestionId = parentQuestionId;
 	}
 
 	public QuestionOptions getOptions() {
@@ -146,54 +119,6 @@ public class Question implements Serializable {
 	public void setImages(QuestionImages images) {
 		this.images = images;
 	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}
-
-	public RelatedTo getRelatedTo() {
-		return relatedTo;
-	}
-
-	public void setRelatedTo(RelatedTo relatedTo) {
-		this.relatedTo = relatedTo;
-	}
-	
-	public String getInsertedBy() {
-		return insertedBy;
-	}
-
-	public void setInsertedBy(String insertedBy) {
-		this.insertedBy = insertedBy;
-	}
-
-	public Date getInsertedDate() {
-		return insertedDate;
-	}
-
-	public void setInsertedDate(Date insertedDate) {
-		this.insertedDate = insertedDate;
-	}
-
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	public Date getUpdatedDate() {
-		return updatedDate;
-	}
-
-	public void setUpdatedDate(Date updatedDate) {
-		this.updatedDate = updatedDate;
-	}
 	
 	public Answer getAnswerId() {
 		return answerId;
@@ -201,22 +126,6 @@ public class Question implements Serializable {
 
 	public void setAnswerId(Answer answerId) {
 		this.answerId = answerId;
-	}
-	
-	public QuestionParagraph getParagraph() {
-		return paragraph;
-	}
-
-	public void setParagraph(QuestionParagraph paragraph) {
-		this.paragraph = paragraph;
-	}
-
-	public List<LinkedQuestion> getLinkedQuestions() {
-		return linkedQuestions;
-	}
-
-	public void setLinkedQuestions(List<LinkedQuestion> linkedQuestions) {
-		this.linkedQuestions = linkedQuestions;
 	}
 
 	@Override

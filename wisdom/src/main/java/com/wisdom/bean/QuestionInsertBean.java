@@ -1,11 +1,16 @@
 package com.wisdom.bean;
 
+import java.util.List;
+
+import com.wisdom.entity.LinkedQuestion;
+import com.wisdom.entity.QuestionParagraph;
 import com.wisdom.utility.json.JacksonUtil;
 
 public class QuestionInsertBean {
 
 	private long id;
 	private String question;
+	private QuestionParagraph paragraph;
 	private QuestionImages images;
 	private String type;
 	private QuestionOptions options;
@@ -13,6 +18,7 @@ public class QuestionInsertBean {
 	private int marks;
 	private int year;
 	private RelatedTo relatedTo;
+	private List<LinkedQuestion> linkedQuestions;
 	
 	public long getId() {
 		return id;
@@ -25,6 +31,12 @@ public class QuestionInsertBean {
 	}
 	public void setQuestion(String question) {
 		this.question = question;
+	}
+	public QuestionParagraph getParagraph() {
+		return paragraph;
+	}
+	public void setParagraph(QuestionParagraph paragraph) {
+		this.paragraph = paragraph;
 	}
 	public QuestionImages getImages() {
 		return images;
@@ -67,6 +79,12 @@ public class QuestionInsertBean {
 	}
 	public void setMarks(int marks) {
 		this.marks = marks;
+	}
+	public List<LinkedQuestion> getLinkedQuestions() {
+		return linkedQuestions;
+	}
+	public void setLinkedQuestions(List<LinkedQuestion> linkedQuestions) {
+		this.linkedQuestions = linkedQuestions;
 	}
 	@Override
 	public String toString() {

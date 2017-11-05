@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.wisdom.bean.QuestionFetchBean;
 import com.wisdom.bean.QuestionInsertBean;
 import com.wisdom.bean.QuestionUpdateBean;
+import com.wisdom.entity.LinkedQuestion;
 import com.wisdom.entity.Question;
 import com.wisdom.exception.FetchException;
 import com.wisdom.exception.InsertException;
@@ -35,8 +36,8 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 	
 	@Override
-	public List<Question> getQuestions(int id) throws FetchException {
-		return fetchService.getQuestions(id);
+	public Question getQuestion(int id) throws FetchException {
+		return fetchService.getQuestion(id);
 	}
 
 	@Override
@@ -50,6 +51,10 @@ public class QuestionServiceImpl implements QuestionService {
 		for(QuestionUpdateBean questionUpdateBean : questionUpdateBeans) {
 			Question question = WisdomUtility.buildQuestion(questionUpdateBean, username);
 			updateService.update(question);
+			for(LinkedQuestion linkedQuestion : questionUpdateBean.getLinkedQuestions()) {
+				updateService.update(linkedQuestion);
+			}
+			updateService.update(questionUpdateBean.getParagraph());
 		}
 		return true;
 	}
@@ -65,6 +70,10 @@ public class QuestionServiceImpl implements QuestionService {
 		for(QuestionInsertBean questionInsertBean : questionInsertBeans) {
 			Question question = WisdomUtility.buildQuestion(questionInsertBean, username);
 			insertService.insert(question);
+			for(LinkedQuestion linkedQuestion : questionInsertBean.getLinkedQuestions()) {
+				insertService.insert(linkedQuestion);
+			}
+			insertService.insert(questionInsertBean.getParagraph());
 		}
 		return true;
 	}

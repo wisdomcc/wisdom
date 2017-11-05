@@ -25,6 +25,9 @@ public class Answer implements Serializable {
 	@Id
 	@Column(name = "id")
 	private long id;
+	
+	@Column(name = "question_id")
+	private long questionId;
 
 	@Column(name = "answer", columnDefinition = "text")
 	private String answer;
@@ -55,6 +58,14 @@ public class Answer implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public long getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(long questionId) {
+		this.questionId = questionId;
 	}
 
 	@Override

@@ -14,7 +14,7 @@ import com.wisdom.exception.UpdateException;
 public interface QuestionService {
 
 	public List<Question> getQuestions(QuestionFetchBean questionRequestBean) throws FetchException;
-	public List<Question> getQuestions(int id) throws FetchException;
+	public Question getQuestion(int id) throws FetchException;
 	public boolean updateQuestion(QuestionUpdateBean questionUpdateBean, String username) throws UpdateException;
 	public boolean updateQuestions(List<QuestionUpdateBean> questionUpdateBean, String username) throws UpdateException;
 	public boolean insertQuestion(QuestionInsertBean questionInsertBean, String username) throws InsertException;

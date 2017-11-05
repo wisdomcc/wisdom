@@ -25,7 +25,7 @@ public class FetchServiceImpl implements FetchService {
 	}
 
 	@Override
-	public List<Question> getQuestions(int id) throws FetchException {
+	public Question getQuestion(int id) throws FetchException {
 		return questionDao.findById(id);
 	}
 

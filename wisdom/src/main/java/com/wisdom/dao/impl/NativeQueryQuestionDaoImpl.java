@@ -2,6 +2,7 @@ package com.wisdom.dao.impl;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 
 import com.wisdom.bean.QuestionFetchBean;
 import com.wisdom.dao.NativeQueryQuestionDao;
+import com.wisdom.dao.QuestionDao;
 import com.wisdom.entity.Question;
 import com.wisdom.exception.FetchException;
 import com.wisdom.utility.WisdomUtility;
@@ -26,6 +28,9 @@ public class NativeQueryQuestionDaoImpl implements NativeQueryQuestionDao, Initi
 
 	@Autowired
 	private DataSource dataSource;
+	
+	@Autowired
+	private QuestionDao questionDao;
 
 	private JdbcTemplate jdbcTemplate;
 
@@ -36,6 +41,7 @@ public class NativeQueryQuestionDaoImpl implements NativeQueryQuestionDao, Initi
 		}
 		Map<Integer, Object> queryMap = WisdomUtility.buildQuery(questionFetchBean);
 		System.out.println("Fetch Query : " + (String) queryMap.get(queryMap.size()));
+		List<Question> processedSearchResults = new ArrayList<Question>();
 		List<Question> searchResults = jdbcTemplate.query((String) queryMap.get(queryMap.size()),
 				new PreparedStatementSetter() {
 					public void setValues(PreparedStatement preparedStatement) throws SQLException {
@@ -49,7 +55,10 @@ public class NativeQueryQuestionDaoImpl implements NativeQueryQuestionDao, Initi
 						System.out.println("Final Query : " + preparedStatement.toString());
 					}
 				}, resultSetExtractor);
-		return searchResults;
+		for(Question question: searchResults) {
+			processedSearchResults.add(questionDao.findById(question.getId()));
+		}
+		return processedSearchResults;
 	}
 
 	@Override

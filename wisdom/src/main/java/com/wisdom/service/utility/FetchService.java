@@ -9,6 +9,6 @@ import com.wisdom.exception.FetchException;
 public interface FetchService {
 
 	public List<Question> getQuestions(QuestionFetchBean questionRequestBean) throws FetchException;
-	public List<Question> getQuestions(int id) throws FetchException;
+	public Question getQuestion(int id) throws FetchException;
 	
 }

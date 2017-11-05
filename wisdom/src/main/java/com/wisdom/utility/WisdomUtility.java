@@ -18,6 +18,8 @@ public class WisdomUtility {
 		question.setHints(questionInsertBean.getHints());
 		question.setOptions(questionInsertBean.getOptions());
 		question.setQuestion(questionInsertBean.getQuestion());
+		//question.setParagraph(questionInsertBean.getParagraph());
+		//question.setLinkedQuestions(questionInsertBean.getLinkedQuestions());
 		question.setImages(questionInsertBean.getImages());
 		question.setType(questionInsertBean.getType());
 		question.setYear(questionInsertBean.getYear());
@@ -34,6 +36,8 @@ public class WisdomUtility {
 		question.setHints(questionUpdateBean.getHints());
 		question.setOptions(questionUpdateBean.getOptions());
 		question.setQuestion(questionUpdateBean.getQuestion());
+		//question.setParagraph(questionUpdateBean.getParagraph());
+		//question.setLinkedQuestions(questionUpdateBean.getLinkedQuestions());
 		question.setImages(questionUpdateBean.getImages());
 		question.setType(questionUpdateBean.getType());
 		question.setYear(questionUpdateBean.getYear());
