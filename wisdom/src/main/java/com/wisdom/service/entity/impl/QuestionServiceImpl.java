@@ -54,7 +54,9 @@ public class QuestionServiceImpl implements QuestionService {
 			for(LinkedQuestion linkedQuestion : questionUpdateBean.getLinkedQuestions()) {
 				updateService.update(linkedQuestion);
 			}
-			updateService.update(questionUpdateBean.getParagraph());
+			if(!questionUpdateBean.getParagraph().getParagraph().isEmpty()) {
+				updateService.update(questionUpdateBean.getParagraph());
+			}
 		}
 		return true;
 	}
@@ -73,7 +75,9 @@ public class QuestionServiceImpl implements QuestionService {
 			for(LinkedQuestion linkedQuestion : questionInsertBean.getLinkedQuestions()) {
 				insertService.insert(linkedQuestion);
 			}
-			insertService.insert(questionInsertBean.getParagraph());
+			if(!questionInsertBean.getParagraph().getParagraph().isEmpty()) {
+				insertService.insert(questionInsertBean.getParagraph());
+			}
 		}
 		return true;
 	}
