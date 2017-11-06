@@ -12,14 +12,17 @@ public class UploadServiceImpl implements UploadService {
 	private final String QUESTION_IMG_UPDOAD_DIRECTORY = "src/main/resources/static/uploadedfiles/";
 	
 	@Override
-	public String uploadImage(MultipartFile multipartFile, String questionId, String option) {
+	public String uploadImage(MultipartFile multipartFile, String questionId, String type) {
 		try {
 			String destinationPath = QUESTION_IMG_UPDOAD_DIRECTORY + questionId;
 			makeDirectory(destinationPath);
-			if("false".equals(option)) {
+			if("question".equals(type)) {
 				destinationPath = QUESTION_IMG_UPDOAD_DIRECTORY + questionId;
-			} else {
+			} else if("option".equals(type)) {
 				destinationPath = QUESTION_IMG_UPDOAD_DIRECTORY + questionId + "/option";
+				makeDirectory(destinationPath);
+			} else if("paragraph".equals(type)) {
+				destinationPath = QUESTION_IMG_UPDOAD_DIRECTORY + questionId + "/paragraph";
 				makeDirectory(destinationPath);
 			}
 			int fileCount = getFileCount(destinationPath);

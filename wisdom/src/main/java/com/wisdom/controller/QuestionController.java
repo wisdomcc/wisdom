@@ -55,9 +55,9 @@ public class QuestionController {
 
 	@RequestMapping(path = "/uploadImage", method = RequestMethod.POST)
 	public ResponseEntity<String> uploadImage(HttpServletResponse res, @RequestParam(value = "file") MultipartFile file,
-			@RequestParam(value = "questionid") String questionId, @RequestParam(value = "option") String option)
+			@RequestParam(value = "questionid") String questionId, @RequestParam(value = "type") String type)
 			throws IOException {
-		String uploadedFilePath = uploadService.uploadImage(file, questionId, option);
+		String uploadedFilePath = uploadService.uploadImage(file, questionId, type);
 		if (uploadedFilePath != null) {
 			return new ResponseEntity<String>("{\"path\":\"" + uploadedFilePath + "\"}", HttpStatus.OK);
 		}
