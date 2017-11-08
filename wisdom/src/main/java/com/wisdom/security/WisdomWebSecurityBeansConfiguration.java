@@ -23,8 +23,10 @@ import org.springframework.security.web.session.InvalidSessionStrategy;
 
 import com.wisdom.security.filter.AllRequestsAllowingCORSFilter;
 import com.wisdom.security.filter.CORSFilter;
+import com.wisdom.security.handler.CustomLogoutSuccessHandler;
 import com.wisdom.security.strategy.CustomAuthenticationSuccessRedirectStrategy;
 import com.wisdom.security.strategy.CustomInvalidSessionStrategy;
+import com.wisdom.security.strategy.CustomLogoutSuccessStrategy;
 import com.wisdom.service.CustomUserDetailsService;
 
 @Configuration
@@ -48,6 +50,18 @@ public class WisdomWebSecurityBeansConfiguration {
 	@Bean
 	public InvalidSessionStrategy customInvalidSessionStrategy(){
 		return new CustomInvalidSessionStrategy();
+	}
+	
+	@Bean
+	public RedirectStrategy customLogoutSuccessStrategy() {
+		return new CustomLogoutSuccessStrategy();
+	}
+	
+	@Bean
+	public CustomLogoutSuccessHandler customLogoutSuccessHandler() {
+		CustomLogoutSuccessHandler ret = new CustomLogoutSuccessHandler();
+		ret.setRedirectStrategy(customLogoutSuccessStrategy());
+		return ret;
 	}
 	
 	@Bean

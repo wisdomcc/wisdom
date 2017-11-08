@@ -15,6 +15,7 @@ import org.springframework.security.web.context.request.async.WebAsyncManagerInt
 import org.springframework.security.web.session.InvalidSessionStrategy;
 
 import com.wisdom.security.filter.CORSFilter;
+import com.wisdom.security.handler.CustomLogoutSuccessHandler;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled=true)
@@ -41,6 +42,9 @@ public class WisdomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
 	@Autowired
 	private InvalidSessionStrategy invalidSessionStrategy;
 	
+	@Autowired
+	private CustomLogoutSuccessHandler customLogoutSuccessHandler;
+	
 	@Override
 	public void configure(HttpSecurity httpSecurity) throws Exception{
 		httpSecurity.httpBasic().disable()
@@ -53,6 +57,8 @@ public class WisdomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
 			.usernameParameter("username").passwordParameter("password")
 			.failureHandler(authenticationFailureHandler)
 			.successHandler(authenticationSuccessHandler)
+		.and()
+		.logout().logoutSuccessHandler(customLogoutSuccessHandler)
 		.and()
 		.sessionManagement().sessionAuthenticationStrategy(sessionAuthenticationStrategy)
 		.invalidSessionStrategy(invalidSessionStrategy)
