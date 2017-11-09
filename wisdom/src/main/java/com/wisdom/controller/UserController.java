@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wisdom.bean.ResponseBean;
 import com.wisdom.bean.WisdomUser;
-import com.wisdom.service.UserManagementService;
+import com.wisdom.service.user.UserManagementService;
 
 @RestController
 public class UserController {

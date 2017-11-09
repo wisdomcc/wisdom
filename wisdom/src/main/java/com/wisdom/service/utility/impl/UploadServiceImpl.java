@@ -24,6 +24,9 @@ public class UploadServiceImpl implements UploadService {
 			} else if("paragraph".equals(type)) {
 				destinationPath = QUESTION_IMG_UPDOAD_DIRECTORY + questionId + "/paragraph";
 				makeDirectory(destinationPath);
+			} else if("answer".equals(type)) {
+				destinationPath = QUESTION_IMG_UPDOAD_DIRECTORY + questionId + "/answer";
+				makeDirectory(destinationPath);
 			}
 			int fileCount = getFileCount(destinationPath);
 			String origFileName = multipartFile.getOriginalFilename();

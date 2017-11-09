@@ -27,7 +27,7 @@ import com.wisdom.security.handler.CustomLogoutSuccessHandler;
 import com.wisdom.security.strategy.CustomAuthenticationSuccessRedirectStrategy;
 import com.wisdom.security.strategy.CustomInvalidSessionStrategy;
 import com.wisdom.security.strategy.CustomLogoutSuccessStrategy;
-import com.wisdom.service.CustomUserDetailsService;
+import com.wisdom.service.user.CustomUserDetailsService;
 
 @Configuration
 public class WisdomWebSecurityBeansConfiguration {

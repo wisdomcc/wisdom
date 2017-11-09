@@ -17,16 +17,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
-import com.wisdom.bean.QuestionImages;
-import com.wisdom.bean.QuestionOptions;
-import com.wisdom.bean.RelatedTo;
+import com.wisdom.bean.question.QuestionImages;
+import com.wisdom.bean.question.QuestionOptions;
+import com.wisdom.bean.question.RelatedTo;
 import com.wisdom.dao.NativeQueryQuestionDao;
 import com.wisdom.dao.impl.NativeQueryQuestionDaoImpl;
-import com.wisdom.entity.Question;
-import com.wisdom.service.EmailService;
+import com.wisdom.entity.question.Question;
+import com.wisdom.service.email.EmailService;
+import com.wisdom.service.email.impl.EmailServiceImpl;
+import com.wisdom.service.entity.AnswerService;
 import com.wisdom.service.entity.QuestionService;
+import com.wisdom.service.entity.impl.AnswerServiceImpl;
 import com.wisdom.service.entity.impl.QuestionServiceImpl;
-import com.wisdom.service.impl.EmailServiceImpl;
 import com.wisdom.service.utility.FetchService;
 import com.wisdom.service.utility.InsertService;
 import com.wisdom.service.utility.UpdateService;
@@ -104,6 +106,11 @@ public class WisdomConfiguration {
 	@Bean
 	public QuestionService questionService() {
 		return new QuestionServiceImpl();
+	}
+	
+	@Bean
+	public AnswerService answerService() {
+		return new AnswerServiceImpl();
 	}
 
 	@Bean

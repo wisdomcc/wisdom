@@ -4,11 +4,14 @@ import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.wisdom.bean.QuestionFetchBean;
-import com.wisdom.bean.QuestionInsertBean;
-import com.wisdom.bean.QuestionUpdateBean;
+import com.wisdom.bean.answer.AnswerInsertBean;
+import com.wisdom.bean.answer.AnswerUpdateBean;
+import com.wisdom.bean.question.QuestionFetchBean;
+import com.wisdom.bean.question.QuestionInsertBean;
+import com.wisdom.bean.question.QuestionUpdateBean;
 import com.wisdom.constant.QueryConstant;
-import com.wisdom.entity.Question;
+import com.wisdom.entity.answer.Answer;
+import com.wisdom.entity.question.Question;
 
 public class WisdomUtility {
 
@@ -46,6 +49,28 @@ public class WisdomUtility {
 		question.setUpdatedBy(username);
 		question.setUpdatedDate(new Date(System.currentTimeMillis()));
 		return question;
+	}
+	
+	public static Answer buildQuestion(AnswerUpdateBean answerUpdateBean, String username) {
+		Answer answer = new Answer();
+		answer.setId(answerUpdateBean.getId());
+		answer.setQuestionId(answerUpdateBean.getQuestionId());
+		answer.setAnswer(answerUpdateBean.getAnswer());
+		answer.setExplanation(answerUpdateBean.getExplanation());
+		answer.setUpdatedBy(username);
+		answer.setUpdatedDate(new Date(System.currentTimeMillis()));
+		return answer;
+	}
+	
+	public static Answer buildQuestion(AnswerInsertBean answerInsertBean, String username) {
+		Answer answer = new Answer();
+		answer.setId(answerInsertBean.getId());
+		answer.setQuestionId(answerInsertBean.getQuestionId());
+		answer.setAnswer(answerInsertBean.getAnswer());
+		answer.setExplanation(answerInsertBean.getExplanation());
+		answer.setInsertedBy(username);
+		answer.setInsertedDate(new Date(System.currentTimeMillis()));
+		return answer;
 	}
 	
 	public static Map<Integer, Object> buildQuery(QuestionFetchBean questionFetchBean) {

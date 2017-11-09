@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.wisdom.bean.QuestionFetchBean;
-import com.wisdom.bean.QuestionInsertBean;
-import com.wisdom.bean.QuestionUpdateBean;
-import com.wisdom.dao.ExamDao;
-import com.wisdom.entity.Exam;
-import com.wisdom.entity.Question;
+import com.wisdom.bean.question.QuestionFetchBean;
+import com.wisdom.bean.question.QuestionInsertBean;
+import com.wisdom.bean.question.QuestionUpdateBean;
+import com.wisdom.dao.question.relatedto.ExamDao;
+import com.wisdom.entity.question.Question;
+import com.wisdom.entity.question.relatedto.Exam;
 import com.wisdom.service.entity.QuestionService;
 import com.wisdom.service.utility.UploadService;
 

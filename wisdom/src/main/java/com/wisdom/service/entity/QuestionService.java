@@ -2,10 +2,10 @@ package com.wisdom.service.entity;
 
 import java.util.List;
 
-import com.wisdom.bean.QuestionFetchBean;
-import com.wisdom.bean.QuestionInsertBean;
-import com.wisdom.bean.QuestionUpdateBean;
-import com.wisdom.entity.Question;
+import com.wisdom.bean.question.QuestionFetchBean;
+import com.wisdom.bean.question.QuestionInsertBean;
+import com.wisdom.bean.question.QuestionUpdateBean;
+import com.wisdom.entity.question.Question;
 import com.wisdom.exception.FetchException;
 import com.wisdom.exception.InsertException;
 import com.wisdom.exception.PrintException;

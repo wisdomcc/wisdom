@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wisdom.bean.email.EmailBean;
-import com.wisdom.service.EmailService;
+import com.wisdom.service.email.EmailService;
 
 @RestController
 public class EmailController {

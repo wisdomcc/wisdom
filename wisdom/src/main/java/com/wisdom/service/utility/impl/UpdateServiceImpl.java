@@ -2,12 +2,15 @@ package com.wisdom.service.utility.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.wisdom.dao.LinkedQuestionDao;
-import com.wisdom.dao.QuestionDao;
-import com.wisdom.dao.QuestionParagraphDao;
-import com.wisdom.entity.LinkedQuestion;
-import com.wisdom.entity.Question;
-import com.wisdom.entity.QuestionParagraph;
+import com.wisdom.dao.answer.AnswerDao;
+import com.wisdom.dao.question.LinkedQuestionDao;
+import com.wisdom.dao.question.QuestionDao;
+import com.wisdom.dao.question.QuestionParagraphDao;
+import com.wisdom.entity.answer.Answer;
+import com.wisdom.entity.question.LinkedQuestion;
+import com.wisdom.entity.question.Question;
+import com.wisdom.entity.question.QuestionParagraph;
+import com.wisdom.exception.InsertException;
 import com.wisdom.exception.UpdateException;
 import com.wisdom.service.utility.UpdateService;
 
@@ -21,6 +24,9 @@ public class UpdateServiceImpl implements UpdateService {
 	
 	@Autowired
 	private QuestionParagraphDao questionParagraphDao;
+	
+	@Autowired
+	private AnswerDao answerDao;
 
 	@Override
 	public boolean update(Question question) throws UpdateException {
@@ -43,6 +49,15 @@ public class UpdateServiceImpl implements UpdateService {
 	@Override
 	public boolean update(QuestionParagraph question) throws UpdateException {
 		QuestionParagraph q = questionParagraphDao.save(question);
+		if(q != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean update(Answer answer) throws InsertException {
+		Answer q = answerDao.save(answer);
 		if(q != null) {
 			return true;
 		}

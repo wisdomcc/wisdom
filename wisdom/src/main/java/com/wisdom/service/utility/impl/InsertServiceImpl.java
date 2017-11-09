@@ -2,12 +2,14 @@ package com.wisdom.service.utility.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.wisdom.dao.LinkedQuestionDao;
-import com.wisdom.dao.QuestionDao;
-import com.wisdom.dao.QuestionParagraphDao;
-import com.wisdom.entity.LinkedQuestion;
-import com.wisdom.entity.Question;
-import com.wisdom.entity.QuestionParagraph;
+import com.wisdom.dao.answer.AnswerDao;
+import com.wisdom.dao.question.LinkedQuestionDao;
+import com.wisdom.dao.question.QuestionDao;
+import com.wisdom.dao.question.QuestionParagraphDao;
+import com.wisdom.entity.answer.Answer;
+import com.wisdom.entity.question.LinkedQuestion;
+import com.wisdom.entity.question.Question;
+import com.wisdom.entity.question.QuestionParagraph;
 import com.wisdom.exception.InsertException;
 import com.wisdom.service.utility.InsertService;
 
@@ -21,6 +23,9 @@ public class InsertServiceImpl implements InsertService {
 	
 	@Autowired
 	private QuestionParagraphDao questionParagraphDao;
+	
+	@Autowired
+	private AnswerDao answerDao;
 
 	@Override
 	public boolean insert(Question question) throws InsertException {
@@ -43,6 +48,15 @@ public class InsertServiceImpl implements InsertService {
 	@Override
 	public boolean insert(QuestionParagraph question) throws InsertException {
 		QuestionParagraph q = questionParagraphDao.save(question);
+		if(q != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean insert(Answer answer) throws InsertException {
+		Answer q = answerDao.save(answer);
 		if(q != null) {
 			return true;
 		}
