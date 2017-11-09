@@ -1,5 +1,8 @@
 package com.wisdom.bean.answer;
 
+import java.util.List;
+
+import com.wisdom.entity.answer.LinkedAnswer;
 import com.wisdom.utility.json.JacksonUtil;
 
 public class AnswerUpdateBean {
@@ -8,6 +11,7 @@ public class AnswerUpdateBean {
 	private long questionId;
 	private String answer;
 	private AnswerExplanation explanation;
+	private List<LinkedAnswer> linkedAnswers;
 	
 	public String getAnswer() {
 		return answer;
@@ -39,6 +43,14 @@ public class AnswerUpdateBean {
 
 	public void setQuestionId(long questionId) {
 		this.questionId = questionId;
+	}
+
+	public List<LinkedAnswer> getLinkedAnswers() {
+		return linkedAnswers;
+	}
+
+	public void setLinkedAnswers(List<LinkedAnswer> linkedAnswers) {
+		this.linkedAnswers = linkedAnswers;
 	}
 
 	@Override

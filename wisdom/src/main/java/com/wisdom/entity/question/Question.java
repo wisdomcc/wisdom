@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -16,7 +15,6 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.wisdom.bean.question.QuestionImages;
@@ -87,10 +85,8 @@ public class Question implements Serializable {
 	@OneToOne(mappedBy = "paragraphId")
 	private QuestionParagraph paragraph;
 	
-	@OneToOne
-	@JoinColumn(name = "id", referencedColumnName="question_id")
-	@JsonIgnore
-	private Answer answerId;
+	@OneToOne(mappedBy = "answerId")
+	private Answer answer;
 	
 	public long getId() {
 		return id;
@@ -196,12 +192,12 @@ public class Question implements Serializable {
 		this.updatedDate = updatedDate;
 	}
 	
-	public Answer getAnswerId() {
-		return answerId;
+	public Answer getAnswer() {
+		return answer;
 	}
 
-	public void setAnswerId(Answer answerId) {
-		this.answerId = answerId;
+	public void setAnswer(Answer answer) {
+		this.answer = answer;
 	}
 	
 	public QuestionParagraph getParagraph() {

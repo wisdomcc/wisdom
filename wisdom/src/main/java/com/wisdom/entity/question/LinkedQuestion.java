@@ -14,12 +14,11 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.wisdom.bean.question.QuestionImages;
 import com.wisdom.bean.question.QuestionOptions;
-import com.wisdom.entity.answer.Answer;
+import com.wisdom.entity.answer.LinkedAnswer;
 import com.wisdom.utility.json.JacksonUtil;
 import com.wisdom.utility.json.JsonStringType;
 
@@ -60,10 +59,8 @@ public class LinkedQuestion implements Serializable {
 	@JoinColumn(name = "parent_question_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private Question questionId;
 	
-	@OneToOne
-	@JoinColumn(name = "id", referencedColumnName="question_id")
-	@JsonIgnore
-	private Answer answerId;
+	@OneToOne(mappedBy = "linkedAnswerId")
+	private LinkedAnswer answer;
 	
 	public long getId() {
 		return id;
@@ -121,12 +118,12 @@ public class LinkedQuestion implements Serializable {
 		this.images = images;
 	}
 	
-	public Answer getAnswerId() {
-		return answerId;
+	public LinkedAnswer getAnswer() {
+		return answer;
 	}
 
-	public void setAnswerId(Answer answerId) {
-		this.answerId = answerId;
+	public void setAnswer(LinkedAnswer answer) {
+		this.answer = answer;
 	}
 
 	@Override

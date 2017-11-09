@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.wisdom.bean.answer.AnswerInsertBean;
 import com.wisdom.bean.answer.AnswerUpdateBean;
 import com.wisdom.entity.answer.Answer;
+import com.wisdom.entity.answer.LinkedAnswer;
 import com.wisdom.exception.InsertException;
 import com.wisdom.exception.UpdateException;
 import com.wisdom.service.entity.AnswerService;
@@ -27,6 +28,11 @@ public class AnswerServiceImpl implements AnswerService {
 		for(AnswerUpdateBean answerUpdateBean : answerUpdateBeans) {
 			Answer answer = WisdomUtility.buildQuestion(answerUpdateBean, username);
 			updateService.update(answer);
+			if(!answerUpdateBean.getLinkedAnswers().isEmpty()) {
+				for(LinkedAnswer linkedAnswer: answerUpdateBean.getLinkedAnswers()) {
+					updateService.update(linkedAnswer);
+				}
+			}
 		}
 		return true;
 	}
@@ -36,6 +42,11 @@ public class AnswerServiceImpl implements AnswerService {
 		for(AnswerInsertBean answerInsertBean : answerInsertBeans) {
 			Answer answer = WisdomUtility.buildQuestion(answerInsertBean, username);
 			insertService.insert(answer);
+			if(!answerInsertBean.getLinkedAnswers().isEmpty()) {
+				for(LinkedAnswer linkedAnswer: answerInsertBean.getLinkedAnswers()) {
+					insertService.insert(linkedAnswer);
+				}
+			}
 		}
 		return false;
 	}
