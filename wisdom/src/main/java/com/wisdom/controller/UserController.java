@@ -42,7 +42,7 @@ public class UserController {
 		ResponseBean response = new ResponseBean();
 		userService.addUser(username, emailId, password);
 		response.setMessage("Successfully registered. Login using username.");
-		response.setType("success");
+		response.setType("status");
 		return response;
 	}
 	

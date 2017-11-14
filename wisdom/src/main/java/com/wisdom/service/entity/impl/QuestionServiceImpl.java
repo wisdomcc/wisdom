@@ -75,7 +75,9 @@ public class QuestionServiceImpl implements QuestionService {
 			for(LinkedQuestion linkedQuestion : questionInsertBean.getLinkedQuestions()) {
 				insertService.insert(linkedQuestion);
 			}
-			if(!questionInsertBean.getParagraph().getParagraph().isEmpty()) {
+			if(questionInsertBean.getParagraph() != null && 
+				questionInsertBean.getParagraph().getParagraph() != null && 
+					!questionInsertBean.getParagraph().getParagraph().isEmpty()) {
 				insertService.insert(questionInsertBean.getParagraph());
 			}
 		}
