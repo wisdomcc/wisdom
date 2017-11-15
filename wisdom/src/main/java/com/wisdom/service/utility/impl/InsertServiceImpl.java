@@ -7,11 +7,13 @@ import com.wisdom.dao.answer.LinkedAnswerDao;
 import com.wisdom.dao.question.LinkedQuestionDao;
 import com.wisdom.dao.question.QuestionDao;
 import com.wisdom.dao.question.QuestionParagraphDao;
+import com.wisdom.dao.testseries.TestSeriesDao;
 import com.wisdom.entity.answer.Answer;
 import com.wisdom.entity.answer.LinkedAnswer;
 import com.wisdom.entity.question.LinkedQuestion;
 import com.wisdom.entity.question.Question;
 import com.wisdom.entity.question.QuestionParagraph;
+import com.wisdom.entity.testseries.TestSeries;
 import com.wisdom.exception.InsertException;
 import com.wisdom.service.utility.InsertService;
 
@@ -31,6 +33,9 @@ public class InsertServiceImpl implements InsertService {
 	
 	@Autowired
 	private LinkedAnswerDao linkedAnswerDao;
+	
+	@Autowired
+	private TestSeriesDao testSeriesDao;
 
 	@Override
 	public boolean insert(Question question) throws InsertException {
@@ -71,6 +76,15 @@ public class InsertServiceImpl implements InsertService {
 	@Override
 	public boolean insert(LinkedAnswer linkedAnswer) throws InsertException {
 		LinkedAnswer q = linkedAnswerDao.save(linkedAnswer);
+		if(q != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public boolean insert(TestSeries testSeries) throws InsertException {
+		TestSeries q = testSeriesDao.save(testSeries);
 		if(q != null) {
 			return true;
 		}

@@ -9,9 +9,12 @@ import com.wisdom.bean.answer.AnswerUpdateBean;
 import com.wisdom.bean.question.QuestionFetchBean;
 import com.wisdom.bean.question.QuestionInsertBean;
 import com.wisdom.bean.question.QuestionUpdateBean;
+import com.wisdom.bean.testseries.TestSeriesInsertBean;
+import com.wisdom.bean.testseries.TestSeriesUpdateBean;
 import com.wisdom.constant.QueryConstant;
 import com.wisdom.entity.answer.Answer;
 import com.wisdom.entity.question.Question;
+import com.wisdom.entity.testseries.TestSeries;
 
 public class WisdomUtility {
 
@@ -97,6 +100,40 @@ public class WisdomUtility {
 		}
 		queryMap.put(++index, query);
 		return queryMap;
+	}
+
+	public static TestSeries buildQuestion(TestSeriesUpdateBean testSeriesUpdateBean, String username) {
+		TestSeries testSeries = new TestSeries();
+		testSeries.setId(testSeriesUpdateBean.getId());
+		testSeries.setActivateDate(testSeriesUpdateBean.getActivateDate());
+		testSeries.setDeactivateDate(testSeriesUpdateBean.getDeactivateDate());
+		testSeries.setDuration(testSeriesUpdateBean.getDuration());
+		testSeries.setNoOfQuestion(testSeriesUpdateBean.getNoOfQuestion());
+		testSeries.setType(testSeriesUpdateBean.getType());
+		testSeries.setExam(testSeriesUpdateBean.getExam());
+		testSeries.setStream(testSeriesUpdateBean.getStream());
+		testSeries.setSubject(testSeriesUpdateBean.getSubject());
+		testSeries.setTopic(testSeriesUpdateBean.getTopic());
+		testSeries.setCreatedBy(username);
+		testSeries.setCreated_date(new Date(System.currentTimeMillis()));
+		return testSeries;
+	}
+	
+	public static TestSeries buildQuestion(TestSeriesInsertBean testSeriesInsertBean, String username) {
+		TestSeries testSeries = new TestSeries();
+		testSeries.setId(testSeriesInsertBean.getId());
+		testSeries.setActivateDate(testSeriesInsertBean.getActivateDate());
+		testSeries.setDeactivateDate(testSeriesInsertBean.getDeactivateDate());
+		testSeries.setDuration(testSeriesInsertBean.getDuration());
+		testSeries.setNoOfQuestion(testSeriesInsertBean.getNoOfQuestion());
+		testSeries.setType(testSeriesInsertBean.getType());
+		testSeries.setExam(testSeriesInsertBean.getExam());
+		testSeries.setStream(testSeriesInsertBean.getStream());
+		testSeries.setSubject(testSeriesInsertBean.getSubject());
+		testSeries.setTopic(testSeriesInsertBean.getTopic());
+		testSeries.setCreatedBy(username);
+		testSeries.setCreated_date(new Date(System.currentTimeMillis()));
+		return testSeries;
 	}
 	
 }

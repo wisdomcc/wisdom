@@ -27,8 +27,10 @@ import com.wisdom.service.email.EmailService;
 import com.wisdom.service.email.impl.EmailServiceImpl;
 import com.wisdom.service.entity.AnswerService;
 import com.wisdom.service.entity.QuestionService;
+import com.wisdom.service.entity.TestSeriesService;
 import com.wisdom.service.entity.impl.AnswerServiceImpl;
 import com.wisdom.service.entity.impl.QuestionServiceImpl;
+import com.wisdom.service.entity.impl.TestSeriesServiceImpl;
 import com.wisdom.service.utility.FetchService;
 import com.wisdom.service.utility.InsertService;
 import com.wisdom.service.utility.UpdateService;
@@ -111,6 +113,11 @@ public class WisdomConfiguration {
 	@Bean
 	public AnswerService answerService() {
 		return new AnswerServiceImpl();
+	}
+	
+	@Bean
+	public TestSeriesService testSeriesService() {
+		return new TestSeriesServiceImpl();
 	}
 
 	@Bean
