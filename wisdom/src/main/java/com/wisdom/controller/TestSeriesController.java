@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wisdom.bean.testseries.TestSeriesInsertBean;
+import com.wisdom.bean.testseries.TestSeriesQuestionMapBean;
 import com.wisdom.bean.testseries.TestSeriesUpdateBean;
+import com.wisdom.dao.testseries.TestSeriesDao;
+import com.wisdom.entity.testseries.TestSeries;
 import com.wisdom.service.entity.TestSeriesService;
 
 @RestController
@@ -19,6 +22,19 @@ public class TestSeriesController {
 	
 	@Autowired
 	private TestSeriesService testSeriesService;
+	
+	@Autowired
+	private TestSeriesDao testSeriesDao;
+	
+	@RequestMapping(path = "/fetch", method = RequestMethod.GET)
+	public List<TestSeries> fetchTestSeries() {
+		return testSeriesDao.findAll();
+	}
+	
+	@RequestMapping(path = "/insertmap", method = RequestMethod.POST)
+	public boolean insertTestSeriesQuestionMap(Principal principal, @RequestBody List<TestSeriesQuestionMapBean> testSeriesQuestionMapBeanList) {
+		return testSeriesService.insertTestSeriesQuestionMap(testSeriesQuestionMapBeanList, principal.getName());
+	}
 	
 	@RequestMapping(path = "/insert", method = RequestMethod.POST)
 	public boolean insertTestSeries(Principal principal, @RequestBody List<TestSeriesInsertBean> testSeriesInsertBeanList) {

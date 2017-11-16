@@ -65,7 +65,7 @@ public class QuestionController {
 	}
 
 	@RequestMapping(path = "/viewAllExam", method = RequestMethod.GET)
-	public List<Exam> uploadImage(HttpServletResponse res) {
+	public List<Exam> viewAllExam() {
 		return examDao.findAll();
 	}
 

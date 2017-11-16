@@ -46,7 +46,7 @@ public class TestSeries {
 	private String createdBy;
 	
 	@Column(name = "created_date", nullable=false)
-	private Date created_date;
+	private Date createdDate;
 
 	public long getId() {
 		return id;
@@ -136,12 +136,12 @@ public class TestSeries {
 		this.createdBy = createdBy;
 	}
 
-	public Date getCreated_date() {
-		return created_date;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setCreated_date(Date created_date) {
-		this.created_date = created_date;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 	
 }

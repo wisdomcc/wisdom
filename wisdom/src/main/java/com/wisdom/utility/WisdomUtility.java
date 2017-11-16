@@ -115,7 +115,7 @@ public class WisdomUtility {
 		testSeries.setSubject(testSeriesUpdateBean.getSubject());
 		testSeries.setTopic(testSeriesUpdateBean.getTopic());
 		testSeries.setCreatedBy(username);
-		testSeries.setCreated_date(new Date(System.currentTimeMillis()));
+		testSeries.setCreatedDate(new Date(System.currentTimeMillis()));
 		return testSeries;
 	}
 	
@@ -132,7 +132,7 @@ public class WisdomUtility {
 		testSeries.setSubject(testSeriesInsertBean.getSubject());
 		testSeries.setTopic(testSeriesInsertBean.getTopic());
 		testSeries.setCreatedBy(username);
-		testSeries.setCreated_date(new Date(System.currentTimeMillis()));
+		testSeries.setCreatedDate(new Date(System.currentTimeMillis()));
 		return testSeries;
 	}
 	
