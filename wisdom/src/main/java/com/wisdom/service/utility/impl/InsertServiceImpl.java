@@ -7,8 +7,10 @@ import com.wisdom.dao.answer.LinkedAnswerDao;
 import com.wisdom.dao.question.LinkedQuestionDao;
 import com.wisdom.dao.question.QuestionDao;
 import com.wisdom.dao.question.QuestionParagraphDao;
+import com.wisdom.dao.testseries.TestSeriesAnswerDao;
 import com.wisdom.dao.testseries.TestSeriesDao;
 import com.wisdom.dao.testseries.TestSeriesEnrollmentDao;
+import com.wisdom.dao.testseries.TestSeriesLinkedAnswerDao;
 import com.wisdom.dao.testseries.TestSeriesQuestionMapDao;
 import com.wisdom.entity.answer.Answer;
 import com.wisdom.entity.answer.LinkedAnswer;
@@ -16,7 +18,9 @@ import com.wisdom.entity.question.LinkedQuestion;
 import com.wisdom.entity.question.Question;
 import com.wisdom.entity.question.QuestionParagraph;
 import com.wisdom.entity.testseries.TestSeries;
+import com.wisdom.entity.testseries.TestSeriesAnswer;
 import com.wisdom.entity.testseries.TestSeriesEnrollment;
+import com.wisdom.entity.testseries.TestSeriesLinkedAnswer;
 import com.wisdom.entity.testseries.TestSeriesQuestionMap;
 import com.wisdom.exception.InsertException;
 import com.wisdom.service.utility.InsertService;
@@ -46,6 +50,12 @@ public class InsertServiceImpl implements InsertService {
 	
 	@Autowired
 	private TestSeriesEnrollmentDao testSeriesEnrollmentDao;
+	
+	@Autowired
+	private TestSeriesAnswerDao testSeriesAnswerDao;
+	
+	@Autowired
+	private TestSeriesLinkedAnswerDao testSeriesLinkedAnswerDao;
 
 	@Override
 	public boolean insert(Question question) throws InsertException {
@@ -113,6 +123,24 @@ public class InsertServiceImpl implements InsertService {
 	@Override
 	public boolean insert(TestSeriesEnrollment testSeriesEnrollment) throws InsertException {
 		TestSeriesEnrollment q = testSeriesEnrollmentDao.save(testSeriesEnrollment);
+		if(q != null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean insert(TestSeriesAnswer testSeriesAnswer) throws InsertException {
+		TestSeriesAnswer q = testSeriesAnswerDao.save(testSeriesAnswer);
+		if(q != null) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean insert(TestSeriesLinkedAnswer testSeriesLinkedAnswer) throws InsertException {
+		TestSeriesLinkedAnswer q = testSeriesLinkedAnswerDao.save(testSeriesLinkedAnswer);
 		if(q != null) {
 			return true;
 		}

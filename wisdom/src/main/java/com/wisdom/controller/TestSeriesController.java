@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wisdom.bean.testseries.TestSeriesAnswerBean;
 import com.wisdom.bean.testseries.TestSeriesEnrollmentBean;
 import com.wisdom.bean.testseries.TestSeriesInsertBean;
 import com.wisdom.bean.testseries.TestSeriesQuestionMapBean;
@@ -35,6 +36,11 @@ public class TestSeriesController {
 	@RequestMapping(path = "/enroll", method = RequestMethod.POST)
 	public boolean enrollTestSeries(Principal principal, @RequestBody List<TestSeriesEnrollmentBean> testSeriesEnrollmentBeanList) {
 		return testSeriesService.enrollTestSeries(testSeriesEnrollmentBeanList, principal.getName());
+	}
+	
+	@RequestMapping(path = "/submit", method = RequestMethod.POST)
+	public boolean submitTestSeries(Principal principal, @RequestBody List<TestSeriesAnswerBean> testSeriesAnswerBeanList) {
+		return testSeriesService.submitTestSeries(testSeriesAnswerBeanList, principal.getName());
 	}
 	
 	@RequestMapping(path = "/insertmap", method = RequestMethod.POST)

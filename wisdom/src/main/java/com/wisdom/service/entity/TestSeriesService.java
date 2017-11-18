@@ -2,6 +2,7 @@ package com.wisdom.service.entity;
 
 import java.util.List;
 
+import com.wisdom.bean.testseries.TestSeriesAnswerBean;
 import com.wisdom.bean.testseries.TestSeriesEnrollmentBean;
 import com.wisdom.bean.testseries.TestSeriesInsertBean;
 import com.wisdom.bean.testseries.TestSeriesQuestionMapBean;
@@ -15,5 +16,6 @@ public interface TestSeriesService {
 	public boolean insertTestSeries(List<TestSeriesInsertBean> questionInsertBeans, String username) throws InsertException;
 	public boolean insertTestSeriesQuestionMap(List<TestSeriesQuestionMapBean> testSeriesQuestionMapBeans, String username) throws InsertException;
 	public boolean enrollTestSeries(List<TestSeriesEnrollmentBean> testSeriesEnrollmentBeans, String username) throws InsertException;
+	public boolean submitTestSeries(List<TestSeriesAnswerBean> testSeriesAnswerBeans, String username) throws InsertException;
 
 }

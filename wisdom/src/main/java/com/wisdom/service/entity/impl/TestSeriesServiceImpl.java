@@ -4,12 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.wisdom.bean.testseries.TestSeriesAnswerBean;
 import com.wisdom.bean.testseries.TestSeriesEnrollmentBean;
 import com.wisdom.bean.testseries.TestSeriesInsertBean;
 import com.wisdom.bean.testseries.TestSeriesQuestionMapBean;
 import com.wisdom.bean.testseries.TestSeriesUpdateBean;
 import com.wisdom.entity.testseries.TestSeries;
+import com.wisdom.entity.testseries.TestSeriesAnswer;
 import com.wisdom.entity.testseries.TestSeriesEnrollment;
+import com.wisdom.entity.testseries.TestSeriesLinkedAnswer;
 import com.wisdom.entity.testseries.TestSeriesQuestionMap;
 import com.wisdom.exception.InsertException;
 import com.wisdom.exception.UpdateException;
@@ -65,6 +68,19 @@ public class TestSeriesServiceImpl implements TestSeriesService {
 		for(TestSeriesEnrollmentBean testSeriesEnrollmentBean : testSeriesEnrollmentBeans) {
 			TestSeriesEnrollment testSeriesEnrollment = testSeriesConverters.convertBeanToEntity(testSeriesEnrollmentBean, username);
 			insertService.insert(testSeriesEnrollment);
+		}
+		return true;
+	}
+	
+	@Override
+	public boolean submitTestSeries(List<TestSeriesAnswerBean> testSeriesAnswerBeans,
+			String username) throws InsertException {
+		for(TestSeriesAnswerBean testSeriesAnswerBean : testSeriesAnswerBeans) {
+			TestSeriesAnswer testSeriesAnswer = testSeriesConverters.convertBeanToEntity(testSeriesAnswerBean, username);
+			insertService.insert(testSeriesAnswer);
+			for(TestSeriesLinkedAnswer testSeriesLinkedAnswer : testSeriesAnswerBean.getLinkedAnswers()) {
+				insertService.insert(testSeriesLinkedAnswer);
+			}
 		}
 		return true;
 	}

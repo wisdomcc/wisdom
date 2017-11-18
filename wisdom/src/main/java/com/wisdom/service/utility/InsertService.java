@@ -6,7 +6,9 @@ import com.wisdom.entity.question.LinkedQuestion;
 import com.wisdom.entity.question.Question;
 import com.wisdom.entity.question.QuestionParagraph;
 import com.wisdom.entity.testseries.TestSeries;
+import com.wisdom.entity.testseries.TestSeriesAnswer;
 import com.wisdom.entity.testseries.TestSeriesEnrollment;
+import com.wisdom.entity.testseries.TestSeriesLinkedAnswer;
 import com.wisdom.entity.testseries.TestSeriesQuestionMap;
 import com.wisdom.exception.InsertException;
 
@@ -20,5 +22,7 @@ public interface InsertService {
 	public boolean insert(TestSeries testSeries) throws InsertException;
 	public boolean insert(TestSeriesQuestionMap testSeriesQuestionMap) throws InsertException;
 	public boolean insert(TestSeriesEnrollment testSeriesEnrollment) throws InsertException;
+	public boolean insert(TestSeriesAnswer testSeriesAnswer) throws InsertException;
+	public boolean insert(TestSeriesLinkedAnswer testSeriesLinkedAnswer) throws InsertException;
 
 }
