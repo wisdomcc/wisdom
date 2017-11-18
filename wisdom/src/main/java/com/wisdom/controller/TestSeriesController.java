@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wisdom.bean.testseries.TestSeriesEnrollmentBean;
 import com.wisdom.bean.testseries.TestSeriesInsertBean;
 import com.wisdom.bean.testseries.TestSeriesQuestionMapBean;
 import com.wisdom.bean.testseries.TestSeriesUpdateBean;
@@ -29,6 +30,11 @@ public class TestSeriesController {
 	@RequestMapping(path = "/fetch", method = RequestMethod.GET)
 	public List<TestSeries> fetchTestSeries() {
 		return testSeriesDao.findAll();
+	}
+	
+	@RequestMapping(path = "/enroll", method = RequestMethod.POST)
+	public boolean enrollTestSeries(Principal principal, @RequestBody List<TestSeriesEnrollmentBean> testSeriesEnrollmentBeanList) {
+		return testSeriesService.enrollTestSeries(testSeriesEnrollmentBeanList, principal.getName());
 	}
 	
 	@RequestMapping(path = "/insertmap", method = RequestMethod.POST)

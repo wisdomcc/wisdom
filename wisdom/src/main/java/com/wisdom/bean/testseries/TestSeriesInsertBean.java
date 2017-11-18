@@ -15,7 +15,7 @@ public class TestSeriesInsertBean {
 	private String topic;
 	private int noOfQuestion;
 	private String createdBy;
-	private Date created_date;
+	private Date createdDate;
 
 	public long getId() {
 		return id;
@@ -105,12 +105,12 @@ public class TestSeriesInsertBean {
 		this.createdBy = createdBy;
 	}
 
-	public Date getCreated_date() {
-		return created_date;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setCreated_date(Date created_date) {
-		this.created_date = created_date;
+	public void setCreated_date(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
 }

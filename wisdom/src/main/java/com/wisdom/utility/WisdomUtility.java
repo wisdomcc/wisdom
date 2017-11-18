@@ -102,7 +102,7 @@ public class WisdomUtility {
 		return queryMap;
 	}
 
-	public static TestSeries buildQuestion(TestSeriesUpdateBean testSeriesUpdateBean, String username) {
+	/*public static TestSeries buildQuestion(TestSeriesUpdateBean testSeriesUpdateBean, String username) {
 		TestSeries testSeries = new TestSeries();
 		testSeries.setId(testSeriesUpdateBean.getId());
 		testSeries.setActivateDate(testSeriesUpdateBean.getActivateDate());
@@ -117,9 +117,9 @@ public class WisdomUtility {
 		testSeries.setCreatedBy(username);
 		testSeries.setCreatedDate(new Date(System.currentTimeMillis()));
 		return testSeries;
-	}
+	}*/
 	
-	public static TestSeries buildQuestion(TestSeriesInsertBean testSeriesInsertBean, String username) {
+	/*public static TestSeries buildQuestion(TestSeriesInsertBean testSeriesInsertBean, String username) {
 		TestSeries testSeries = new TestSeries();
 		testSeries.setId(testSeriesInsertBean.getId());
 		testSeries.setActivateDate(testSeriesInsertBean.getActivateDate());
@@ -134,6 +134,6 @@ public class WisdomUtility {
 		testSeries.setCreatedBy(username);
 		testSeries.setCreatedDate(new Date(System.currentTimeMillis()));
 		return testSeries;
-	}
+	}*/
 	
 }
