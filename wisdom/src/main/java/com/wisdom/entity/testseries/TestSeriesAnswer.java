@@ -7,9 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "test_series_student_answer")
+@Table(name = "test_series_student_answer",
+		uniqueConstraints={
+	    @UniqueConstraint(columnNames = {"test_series_id", "username", "question_id"})
+	})
 public class TestSeriesAnswer {
 
 	@Id

@@ -6,9 +6,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "test_series_student_linked_answer")
+@Table(name = "test_series_student_linked_answer",
+		uniqueConstraints={
+	    @UniqueConstraint(columnNames = {"question_id", "username"})
+	})
 public class TestSeriesLinkedAnswer {
 
 	@Id
