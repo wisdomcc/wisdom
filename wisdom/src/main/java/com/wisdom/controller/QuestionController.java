@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.wisdom.bean.question.QuestionCategoryBean;
 import com.wisdom.bean.question.QuestionFetchBean;
 import com.wisdom.bean.question.QuestionInsertBean;
 import com.wisdom.bean.question.QuestionUpdateBean;
@@ -41,6 +42,11 @@ public class QuestionController {
 	@RequestMapping(path = "/fetch", method = RequestMethod.POST)
 	public List<Question> fetchQuestion(@RequestBody QuestionFetchBean questionRequestBean) {
 		return questionService.getQuestions(questionRequestBean);
+	}
+	
+	@RequestMapping(path = "/insertcategory", method = RequestMethod.POST)
+	public boolean insertCategory(@RequestBody QuestionCategoryBean questionCategoryBean) {
+		return questionService.insertCategory(questionCategoryBean);
 	}
 
 	@RequestMapping(path = "/insert", method = RequestMethod.POST)

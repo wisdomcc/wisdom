@@ -1,5 +1,6 @@
 package com.wisdom.service.utility;
 
+import com.wisdom.bean.question.QuestionCategoryBean;
 import com.wisdom.entity.answer.Answer;
 import com.wisdom.entity.answer.LinkedAnswer;
 import com.wisdom.entity.question.LinkedQuestion;
@@ -24,5 +25,6 @@ public interface InsertService {
 	public boolean insert(TestSeriesEnrollment testSeriesEnrollment) throws InsertException;
 	public boolean insert(TestSeriesAnswer testSeriesAnswer) throws InsertException;
 	public boolean insert(TestSeriesLinkedAnswer testSeriesLinkedAnswer) throws InsertException;
+	public boolean insert(QuestionCategoryBean questionCategoryBean) throws InsertException;
 
 }

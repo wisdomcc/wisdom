@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.wisdom.bean.question.QuestionCategoryBean;
 import com.wisdom.bean.question.QuestionFetchBean;
 import com.wisdom.bean.question.QuestionInsertBean;
 import com.wisdom.bean.question.QuestionUpdateBean;
@@ -51,8 +52,10 @@ public class QuestionServiceImpl implements QuestionService {
 		for(QuestionUpdateBean questionUpdateBean : questionUpdateBeans) {
 			Question question = WisdomUtility.buildQuestion(questionUpdateBean, username);
 			updateService.update(question);
-			for(LinkedQuestion linkedQuestion : questionUpdateBean.getLinkedQuestions()) {
-				updateService.update(linkedQuestion);
+			if(questionUpdateBean.getLinkedQuestions() != null) {
+				for(LinkedQuestion linkedQuestion : questionUpdateBean.getLinkedQuestions()) {
+					updateService.update(linkedQuestion);
+				}
 			}
 			if(questionUpdateBean.getParagraph() != null && 
 					questionUpdateBean.getParagraph().getParagraph() != null && 
@@ -74,8 +77,10 @@ public class QuestionServiceImpl implements QuestionService {
 		for(QuestionInsertBean questionInsertBean : questionInsertBeans) {
 			Question question = WisdomUtility.buildQuestion(questionInsertBean, username);
 			insertService.insert(question);
-			for(LinkedQuestion linkedQuestion : questionInsertBean.getLinkedQuestions()) {
-				insertService.insert(linkedQuestion);
+			if(questionInsertBean.getLinkedQuestions() != null) {
+				for(LinkedQuestion linkedQuestion : questionInsertBean.getLinkedQuestions()) {
+					insertService.insert(linkedQuestion);
+				}
 			}
 			if(questionInsertBean.getParagraph() != null && 
 					questionInsertBean.getParagraph().getParagraph() != null && 
@@ -90,6 +95,11 @@ public class QuestionServiceImpl implements QuestionService {
 	public void print(List<Question> questions) throws PrintException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean insertCategory(QuestionCategoryBean questionCategoryBean) throws InsertException {
+		return insertService.insert(questionCategoryBean);
 	}
 
 }
