@@ -7,6 +7,9 @@ import com.wisdom.bean.testseries.TestSeriesEnrollmentBean;
 import com.wisdom.bean.testseries.TestSeriesInsertBean;
 import com.wisdom.bean.testseries.TestSeriesQuestionMapBean;
 import com.wisdom.bean.testseries.TestSeriesUpdateBean;
+import com.wisdom.entity.question.Question;
+import com.wisdom.entity.testseries.TestSeries;
+import com.wisdom.exception.FetchException;
 import com.wisdom.exception.InsertException;
 import com.wisdom.exception.UpdateException;
 
@@ -17,5 +20,7 @@ public interface TestSeriesService {
 	public boolean insertTestSeriesQuestionMap(List<TestSeriesQuestionMapBean> testSeriesQuestionMapBeans, String username) throws InsertException;
 	public boolean enrollTestSeries(List<TestSeriesEnrollmentBean> testSeriesEnrollmentBeans, String username) throws InsertException;
 	public boolean submitTestSeries(List<TestSeriesAnswerBean> testSeriesAnswerBeans, String username) throws InsertException;
+	public List<Question> fetchTestSeriesQuestions(long testSeriesId) throws FetchException;
+	public List<TestSeries> fetchTestSeries(String username) throws FetchException;
 
 }

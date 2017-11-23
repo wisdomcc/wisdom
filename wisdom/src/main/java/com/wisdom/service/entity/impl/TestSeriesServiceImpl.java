@@ -9,14 +9,17 @@ import com.wisdom.bean.testseries.TestSeriesEnrollmentBean;
 import com.wisdom.bean.testseries.TestSeriesInsertBean;
 import com.wisdom.bean.testseries.TestSeriesQuestionMapBean;
 import com.wisdom.bean.testseries.TestSeriesUpdateBean;
+import com.wisdom.entity.question.Question;
 import com.wisdom.entity.testseries.TestSeries;
 import com.wisdom.entity.testseries.TestSeriesAnswer;
 import com.wisdom.entity.testseries.TestSeriesEnrollment;
 import com.wisdom.entity.testseries.TestSeriesLinkedAnswer;
 import com.wisdom.entity.testseries.TestSeriesQuestionMap;
+import com.wisdom.exception.FetchException;
 import com.wisdom.exception.InsertException;
 import com.wisdom.exception.UpdateException;
 import com.wisdom.service.entity.TestSeriesService;
+import com.wisdom.service.utility.FetchService;
 import com.wisdom.service.utility.InsertService;
 import com.wisdom.service.utility.UpdateService;
 import com.wisdom.utility.converters.testseries.TestSeriesConverters;
@@ -28,6 +31,9 @@ public class TestSeriesServiceImpl implements TestSeriesService {
 	
 	@Autowired
 	private UpdateService updateService;
+	
+	@Autowired
+	private FetchService fetchService;
 	
 	@Autowired
 	private TestSeriesConverters testSeriesConverters;
@@ -83,6 +89,16 @@ public class TestSeriesServiceImpl implements TestSeriesService {
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public List<Question> fetchTestSeriesQuestions(long testSeriesId) throws FetchException {
+		return fetchService.getQuestions(testSeriesId);
+	}
+
+	@Override
+	public List<TestSeries> fetchTestSeries(String username) throws FetchException {
+		return fetchService.getTestSeries(username);
 	}
 
 }

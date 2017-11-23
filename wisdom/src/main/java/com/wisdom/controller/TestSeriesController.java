@@ -15,6 +15,7 @@ import com.wisdom.bean.testseries.TestSeriesInsertBean;
 import com.wisdom.bean.testseries.TestSeriesQuestionMapBean;
 import com.wisdom.bean.testseries.TestSeriesUpdateBean;
 import com.wisdom.dao.testseries.TestSeriesDao;
+import com.wisdom.entity.question.Question;
 import com.wisdom.entity.testseries.TestSeries;
 import com.wisdom.service.entity.TestSeriesService;
 
@@ -28,9 +29,19 @@ public class TestSeriesController {
 	@Autowired
 	private TestSeriesDao testSeriesDao;
 	
-	@RequestMapping(path = "/fetch", method = RequestMethod.GET)
-	public List<TestSeries> fetchTestSeries() {
+	@RequestMapping(path = "/fetchall", method = RequestMethod.GET)
+	public List<TestSeries> fetchAllTestSeries() {
 		return testSeriesDao.findAll();
+	}
+	
+	@RequestMapping(path = "/fetch", method = RequestMethod.GET)
+	public List<TestSeries> fetchTestSeries(Principal principal) {
+		return testSeriesService.fetchTestSeries(principal.getName());
+	}
+	
+	@RequestMapping(path = "/fetchquestions", method = RequestMethod.POST)
+	public List<Question> fetchTestSeriesQuestions(@RequestBody long testSeriesId) {
+		return testSeriesService.fetchTestSeriesQuestions(testSeriesId);
 	}
 	
 	@RequestMapping(path = "/enroll", method = RequestMethod.POST)

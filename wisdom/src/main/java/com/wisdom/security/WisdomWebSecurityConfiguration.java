@@ -50,7 +50,7 @@ public class WisdomWebSecurityConfiguration extends WebSecurityConfigurerAdapter
 		httpSecurity.httpBasic().disable()
 		//.and()
 		.authorizeRequests()
-		.antMatchers("/login","/registration","/isusernamepresent","/isemailpresent","/sendemail").permitAll()
+		.antMatchers("/login","/registration","/isusernamepresent","/isemailpresent","/sendemail","/error/**").permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.formLogin().loginPage("/login")

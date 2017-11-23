@@ -9,7 +9,8 @@ import com.wisdom.entity.testseries.TestSeriesEnrollment;
 public interface TestSeriesEnrollmentDao extends CrudRepository<TestSeriesEnrollment, Long> {
 
 	public TestSeriesEnrollment findById(long id);
-	public TestSeriesEnrollment findByTestSeriesId(long testSeriesId);
+	public List<TestSeriesEnrollment> findByTestSeriesId(long testSeriesId);
+	public List<TestSeriesEnrollment> findByUsername(String username);
 	public List<TestSeriesEnrollment> findAll();
 
 }

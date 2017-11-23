@@ -4,9 +4,10 @@ import com.wisdom.utility.json.JacksonUtil;
 
 public class ResponseBean {
 
-	public ResponseBean(String message, String description) {
+	public ResponseBean(String message, String description, String type) {
 		this.message = message;
 		this.description = description;
+		this.type = type;
 	}
 	public ResponseBean(){}
 	

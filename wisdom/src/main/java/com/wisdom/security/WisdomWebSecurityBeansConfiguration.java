@@ -108,7 +108,7 @@ public class WisdomWebSecurityBeansConfiguration {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put(CredentialsExpiredException.class.getName(), "/error/credentialsExpired");
 		map.put(UsernameNotFoundException.class.getName(), "/error/usernameNotFound");
-		map.put(BadCredentialsException.class.getName(), "/error/badCredentials");
+		map.put(BadCredentialsException.class.getName(), "/error/badcredentials");
 		map.put(LockedException.class.getName(), "/error/lockedException");
 		map.put(DisabledException.class.getName(), "/error/disabledException");
 		return map;
