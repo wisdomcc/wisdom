@@ -9,12 +9,9 @@ import com.wisdom.bean.answer.AnswerUpdateBean;
 import com.wisdom.bean.question.QuestionFetchBean;
 import com.wisdom.bean.question.QuestionInsertBean;
 import com.wisdom.bean.question.QuestionUpdateBean;
-import com.wisdom.bean.testseries.TestSeriesInsertBean;
-import com.wisdom.bean.testseries.TestSeriesUpdateBean;
 import com.wisdom.constant.QueryConstant;
 import com.wisdom.entity.answer.Answer;
 import com.wisdom.entity.question.Question;
-import com.wisdom.entity.testseries.TestSeries;
 
 public class WisdomUtility {
 

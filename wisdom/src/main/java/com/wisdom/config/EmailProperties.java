@@ -2,7 +2,7 @@ package com.wisdom.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("wisdom.mail")
+@ConfigurationProperties("wisdom.email")
 public class EmailProperties {
 	
 	private String username;

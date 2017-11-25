@@ -9,6 +9,7 @@ public interface UserManagementService {
 	public void addUser(String username, String emailId, String password);
 	public boolean isUsernameExisting(String username);
 	public boolean isEmailExisting(String emailId);
+	public void updateUser(UserLogin userLogin);
 	//public void deleteUser(int userId);
 	//public void resetLock(String username);
 	//public void handleFailedLogin(String username);
