@@ -1,5 +1,7 @@
 package com.wisdom.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +17,20 @@ public class UserController {
 	
 	@Autowired
 	private UserManagementService userService;
+	
+	@RequestMapping(path = "/changepassword", method = RequestMethod.POST)
+	public ResponseBean changePassword(Principal principal, @RequestParam(value = "oldpassword") String oldPassword,
+			@RequestParam(value = "newpassword") String newPassword) {
+		ResponseBean response = new ResponseBean();
+		if(userService.changePassword(principal.getName(), oldPassword, newPassword)) {
+			response.setMessage("Password Successfully changed.");
+			response.setType("status");
+		} else {
+			response.setMessage("Password change failed. Old password is wrong.");
+			response.setType("error");
+		}
+		return response;
+	}
 	
 	@RequestMapping(path = "/registration", method = RequestMethod.POST)
 	public ResponseBean registerUser(@RequestParam(value = "username") String username,
