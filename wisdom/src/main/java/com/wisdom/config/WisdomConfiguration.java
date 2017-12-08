@@ -31,10 +31,12 @@ import com.wisdom.service.entity.TestSeriesService;
 import com.wisdom.service.entity.impl.AnswerServiceImpl;
 import com.wisdom.service.entity.impl.QuestionServiceImpl;
 import com.wisdom.service.entity.impl.TestSeriesServiceImpl;
+import com.wisdom.service.utility.AmazonS3Service;
 import com.wisdom.service.utility.FetchService;
 import com.wisdom.service.utility.InsertService;
 import com.wisdom.service.utility.UpdateService;
 import com.wisdom.service.utility.UploadService;
+import com.wisdom.service.utility.impl.AmazonS3ServiceImpl;
 import com.wisdom.service.utility.impl.FetchServiceImpl;
 import com.wisdom.service.utility.impl.InsertServiceImpl;
 import com.wisdom.service.utility.impl.UpdateServiceImpl;
@@ -85,6 +87,12 @@ public class WisdomConfiguration {
 	public EmailProperties emailProperties() {
 		return new EmailProperties();
 	}
+	
+	@Bean
+	public AwsProperties awsProperties() {
+		return new AwsProperties();
+	}
+	
 	@Bean
 	public FetchService fetchService() {
 		return new FetchServiceImpl();
@@ -118,6 +126,12 @@ public class WisdomConfiguration {
 	@Bean
 	public TestSeriesService testSeriesService() {
 		return new TestSeriesServiceImpl();
+	}
+	
+	@Bean
+	public AmazonS3Service amazonS3Service() {
+		return AmazonS3ServiceImpl.getInstance(awsProperties().getAccessKey(), awsProperties().getSecretKey(),
+				awsProperties().getRegion());
 	}
 
 	@Bean
