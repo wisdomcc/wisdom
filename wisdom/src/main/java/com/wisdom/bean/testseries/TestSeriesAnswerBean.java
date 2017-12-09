@@ -8,6 +8,7 @@ public class TestSeriesAnswerBean {
 
 	private long id;
 	private String username;
+	private int timeSpend;
 	private int noOfTimesAnswerChanged;
 	private String answer;
 	private long questionId;
@@ -25,6 +26,12 @@ public class TestSeriesAnswerBean {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public int getTimeSpend() {
+		return timeSpend;
+	}
+	public void setTimeSpend(int timeSpend) {
+		this.timeSpend = timeSpend;
 	}
 	public int getNoOfTimesAnswerChanged() {
 		return noOfTimesAnswerChanged;

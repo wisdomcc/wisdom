@@ -21,12 +21,12 @@ public class AnswerController {
 	private AnswerService answerService;
 
 	@RequestMapping(path = "/insert", method = RequestMethod.POST)
-	public boolean insertQuestion(Principal principal, @RequestBody List<AnswerInsertBean> answerInsertBeanList) {
+	public boolean insertAnswers(Principal principal, @RequestBody List<AnswerInsertBean> answerInsertBeanList) {
 		return answerService.insertAnswers(answerInsertBeanList, principal.getName());
 	}
 	
 	@RequestMapping(path = "/update", method = RequestMethod.POST)
-	public boolean updateQuestion(Principal principal, @RequestBody List<AnswerUpdateBean> answerUpdateBeanList) {
+	public boolean updateAnswers(Principal principal, @RequestBody List<AnswerUpdateBean> answerUpdateBeanList) {
 		return answerService.updateAnswers(answerUpdateBeanList, principal.getName());
 	}
 }

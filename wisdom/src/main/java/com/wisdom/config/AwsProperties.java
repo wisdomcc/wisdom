@@ -2,7 +2,7 @@ package com.wisdom.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("aws")
+@ConfigurationProperties(prefix = "aws")
 public class AwsProperties {
 
 	private String accessKey;

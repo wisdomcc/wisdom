@@ -18,6 +18,9 @@ public class TestSeriesLinkedAnswer {
 	@Column(name = "parent_answer_id")
 	private long parentAnswerId;
 	
+	@Column(name = "time_spend", nullable = false)
+	private int timeSpend;
+	
 	@Column(name = "no_of_times_answer_changed", nullable = false)
 	private int noOfTimesAnswerChanged;
 	
@@ -42,6 +45,12 @@ public class TestSeriesLinkedAnswer {
 	}
 	public void setParentAnswerId(long parentAnswerId) {
 		this.parentAnswerId = parentAnswerId;
+	}
+	public int getTimeSpend() {
+		return timeSpend;
+	}
+	public void setTimeSpend(int timeSpend) {
+		this.timeSpend = timeSpend;
 	}
 	public TestSeriesAnswer getAnswerId() {
 		return answerId;

@@ -7,16 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wisdom.bean.testseries.TestSeriesAnswerBean;
 import com.wisdom.bean.testseries.TestSeriesEnrollmentBean;
+import com.wisdom.bean.testseries.TestSeriesEnrollmentStatusBean;
 import com.wisdom.bean.testseries.TestSeriesInsertBean;
 import com.wisdom.bean.testseries.TestSeriesQuestionMapBean;
 import com.wisdom.bean.testseries.TestSeriesUpdateBean;
 import com.wisdom.dao.testseries.TestSeriesDao;
 import com.wisdom.entity.question.Question;
 import com.wisdom.entity.testseries.TestSeries;
+import com.wisdom.entity.testseries.TestSeriesAnswer;
 import com.wisdom.service.entity.TestSeriesService;
 
 @RestController
@@ -29,14 +32,19 @@ public class TestSeriesController {
 	@Autowired
 	private TestSeriesDao testSeriesDao;
 	
+	@RequestMapping(path = "/fetchanswer", method = RequestMethod.POST)
+	public List<TestSeriesAnswer> fetchTestSeriesAnswer(Principal principal, @RequestParam long testSeriesId) {
+		return testSeriesService.fetchTestSeriesAnswers(testSeriesId, principal.getName());
+	}
+	
 	@RequestMapping(path = "/fetchall", method = RequestMethod.GET)
 	public List<TestSeries> fetchAllTestSeries() {
 		return testSeriesDao.findAll();
 	}
 	
 	@RequestMapping(path = "/fetch", method = RequestMethod.GET)
-	public List<TestSeries> fetchTestSeries(Principal principal) {
-		return testSeriesService.fetchTestSeries(principal.getName());
+	public List<TestSeriesEnrollmentStatusBean> fetchTestSeries(Principal principal) {
+		return testSeriesService.fetchTestSeriesEnrollmentStatus(principal.getName());
 	}
 	
 	@RequestMapping(path = "/fetchquestions", method = RequestMethod.POST)

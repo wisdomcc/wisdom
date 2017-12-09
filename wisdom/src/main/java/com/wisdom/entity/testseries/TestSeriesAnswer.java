@@ -23,6 +23,9 @@ public class TestSeriesAnswer {
 	@Column(name = "username", nullable = false)
 	private String username;
 	
+	@Column(name = "time_spend", nullable = false)
+	private int timeSpend;
+	
 	@Column(name = "no_of_times_answer_changed", nullable = false)
 	private int noOfTimesAnswerChanged;
 	
@@ -50,6 +53,12 @@ public class TestSeriesAnswer {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	public int getTimeSpend() {
+		return timeSpend;
+	}
+	public void setTimeSpend(int timeSpend) {
+		this.timeSpend = timeSpend;
+	}
 	public int getNoOfTimesAnswerChanged() {
 		return noOfTimesAnswerChanged;
 	}
@@ -73,6 +82,12 @@ public class TestSeriesAnswer {
 	}
 	public void setTestSeriesId(long testSeriesId) {
 		this.testSeriesId = testSeriesId;
+	}
+	public List<TestSeriesLinkedAnswer> getLinkedAnswers() {
+		return linkedAnswers;
+	}
+	public void setLinkedAnswers(List<TestSeriesLinkedAnswer> linkedAnswers) {
+		this.linkedAnswers = linkedAnswers;
 	}
 	
 }

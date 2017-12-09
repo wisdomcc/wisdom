@@ -6,6 +6,7 @@ import org.mapstruct.Mappings;
 
 import com.wisdom.bean.testseries.TestSeriesAnswerBean;
 import com.wisdom.bean.testseries.TestSeriesEnrollmentBean;
+import com.wisdom.bean.testseries.TestSeriesEnrollmentStatusBean;
 import com.wisdom.bean.testseries.TestSeriesInsertBean;
 import com.wisdom.bean.testseries.TestSeriesQuestionMapBean;
 import com.wisdom.bean.testseries.TestSeriesUpdateBean;
@@ -45,5 +46,11 @@ public interface TestSeriesConverters {
 		@Mapping(target="username", source="username")
 	})
 	public TestSeriesAnswer convertBeanToEntity(TestSeriesAnswerBean bean, String username);
+	
+	@Mappings({
+		@Mapping(target="testSeriesStatus", source="testSeriesStatus"),
+		@Mapping(target="enrollmentId", source="enrollmentId")
+	})
+	public TestSeriesEnrollmentStatusBean convertTestSeriesToEnrollmentStatusBean(TestSeries testSeries, String testSeriesStatus, long enrollmentId);
 	
 }

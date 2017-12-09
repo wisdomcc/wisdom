@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.wisdom.bean.testseries.TestSeriesAnswerBean;
 import com.wisdom.bean.testseries.TestSeriesEnrollmentBean;
+import com.wisdom.bean.testseries.TestSeriesEnrollmentStatusBean;
 import com.wisdom.bean.testseries.TestSeriesInsertBean;
 import com.wisdom.bean.testseries.TestSeriesQuestionMapBean;
 import com.wisdom.bean.testseries.TestSeriesUpdateBean;
@@ -97,8 +98,13 @@ public class TestSeriesServiceImpl implements TestSeriesService {
 	}
 
 	@Override
-	public List<TestSeries> fetchTestSeries(String username) throws FetchException {
-		return fetchService.getTestSeries(username);
+	public List<TestSeriesEnrollmentStatusBean> fetchTestSeriesEnrollmentStatus(String username) throws FetchException {
+		return fetchService.getTestSeriesEnrollmentStatus(username);
+	}
+	
+	@Override
+	public List<TestSeriesAnswer> fetchTestSeriesAnswers(long testSeriesId, String username) throws FetchException {
+		return fetchService.fetch(testSeriesId, username);
 	}
 
 }

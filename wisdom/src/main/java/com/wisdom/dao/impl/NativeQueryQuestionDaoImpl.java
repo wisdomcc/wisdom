@@ -40,7 +40,7 @@ public class NativeQueryQuestionDaoImpl implements NativeQueryQuestionDao, Initi
 			throw new FetchException("relatedTo must be available in json.");
 		}
 		Map<Integer, Object> queryMap = WisdomUtility.buildQuery(questionFetchBean);
-		System.out.println("Fetch Query : " + (String) queryMap.get(queryMap.size()));
+		// System.out.println("Fetch Query : " + (String) queryMap.get(queryMap.size()));
 		List<Question> processedSearchResults = new ArrayList<Question>();
 		List<Question> searchResults = jdbcTemplate.query((String) queryMap.get(queryMap.size()),
 				new PreparedStatementSetter() {
@@ -52,7 +52,7 @@ public class NativeQueryQuestionDaoImpl implements NativeQueryQuestionDao, Initi
 								preparedStatement.setInt(index, (Integer) queryMap.get(index));
 							}
 						}
-						System.out.println("Final Query : " + preparedStatement.toString());
+						// System.out.println("Final Query : " + preparedStatement.toString());
 					}
 				}, resultSetExtractor);
 		for(Question question: searchResults) {

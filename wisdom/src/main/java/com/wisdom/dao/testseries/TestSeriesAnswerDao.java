@@ -11,5 +11,6 @@ public interface TestSeriesAnswerDao extends CrudRepository<TestSeriesAnswer, Lo
 	public TestSeriesAnswer findById(long id);
 	public List<TestSeriesAnswer> findByTestSeriesId(long testSeriesId);
 	public List<TestSeriesAnswer> findAll();
+	public List<TestSeriesAnswer> findByTestSeriesIdAndUsername(long testSeriesId, String username);
 
 }

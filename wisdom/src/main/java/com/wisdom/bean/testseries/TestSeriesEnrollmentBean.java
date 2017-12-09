@@ -9,6 +9,7 @@ public class TestSeriesEnrollmentBean {
 	private String username;
 	private String scheme;
 	private Date enrollmentDate;
+	private String testSeriesStatus;
 	
 	public long getId() {
 		return id;
@@ -39,5 +40,11 @@ public class TestSeriesEnrollmentBean {
 	}
 	public void setEnrollmentDate(Date enrollmentDate) {
 		this.enrollmentDate = enrollmentDate;
+	}
+	public String getTestSeriesStatus() {
+		return testSeriesStatus;
+	}
+	public void setTestSeriesStatus(String testSeriesStatus) {
+		this.testSeriesStatus = testSeriesStatus;
 	}
 }

@@ -31,6 +31,9 @@ public class TestSeriesEnrollment {
 	@Column(name = "enrollment_date", nullable=false)
 	private Date enrollmentDate;
 	
+	@Column(name = "test_series_status", nullable=false)
+	private String testSeriesStatus;
+	
 	public long getId() {
 		return id;
 	}
@@ -60,5 +63,11 @@ public class TestSeriesEnrollment {
 	}
 	public void setEnrollmentDate(Date enrollmentDate) {
 		this.enrollmentDate = enrollmentDate;
+	}
+	public String getTestSeriesStatus() {
+		return testSeriesStatus;
+	}
+	public void setTestSeriesStatus(String testSeriesStatus) {
+		this.testSeriesStatus = testSeriesStatus;
 	}
 }
