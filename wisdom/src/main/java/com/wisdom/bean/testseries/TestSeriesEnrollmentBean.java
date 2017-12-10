@@ -10,6 +10,7 @@ public class TestSeriesEnrollmentBean {
 	private String scheme;
 	private Date enrollmentDate;
 	private String testSeriesStatus;
+	private int remainingExamDuration;
 	
 	public long getId() {
 		return id;
@@ -46,5 +47,11 @@ public class TestSeriesEnrollmentBean {
 	}
 	public void setTestSeriesStatus(String testSeriesStatus) {
 		this.testSeriesStatus = testSeriesStatus;
+	}
+	public int getRemainingExamDuration() {
+		return remainingExamDuration;
+	}
+	public void setRemainingExamDuration(int remainingExamDuration) {
+		this.remainingExamDuration = remainingExamDuration;
 	}
 }

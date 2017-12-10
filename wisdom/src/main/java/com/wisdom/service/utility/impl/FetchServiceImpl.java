@@ -69,7 +69,8 @@ public class FetchServiceImpl implements FetchService {
 		for (TestSeriesEnrollment testSeriesEnrollment : testSeriesEnrollmentDao.findByUsername(username)) {
 			testSeriesEnrollmentStatus.add(testSeriesConverters.convertTestSeriesToEnrollmentStatusBean(
 					testSeriesDao.findById(testSeriesEnrollment.getTestSeriesId()),
-					testSeriesEnrollment.getTestSeriesStatus(), testSeriesEnrollment.getId()));
+					testSeriesEnrollment.getTestSeriesStatus(), testSeriesEnrollment.getRemainingExamDuration(),
+					testSeriesEnrollment.getId()));
 		}
 		return testSeriesEnrollmentStatus;
 	}

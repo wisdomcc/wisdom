@@ -17,6 +17,7 @@ public class TestSeriesEnrollmentStatusBean {
 	private String createdBy;
 	private Date createdDate;
 	private String testSeriesStatus;
+	private int remainingExamDuration;
 	private long enrollmentId;
 
 	public long getId() {
@@ -129,6 +130,14 @@ public class TestSeriesEnrollmentStatusBean {
 
 	public void setEnrollmentId(long enrollmentId) {
 		this.enrollmentId = enrollmentId;
+	}
+
+	public int getRemainingExamDuration() {
+		return remainingExamDuration;
+	}
+
+	public void setRemainingExamDuration(int remainingExamDuration) {
+		this.remainingExamDuration = remainingExamDuration;
 	}
 	
 }

@@ -34,6 +34,9 @@ public class TestSeriesEnrollment {
 	@Column(name = "test_series_status", nullable=false)
 	private String testSeriesStatus;
 	
+	@Column(name = "remaining_exam_duration", nullable=false)
+	private int remainingExamDuration;
+	
 	public long getId() {
 		return id;
 	}
@@ -69,5 +72,11 @@ public class TestSeriesEnrollment {
 	}
 	public void setTestSeriesStatus(String testSeriesStatus) {
 		this.testSeriesStatus = testSeriesStatus;
+	}
+	public int getRemainingExamDuration() {
+		return remainingExamDuration;
+	}
+	public void setRemainingExamDuration(int remainingExamDuration) {
+		this.remainingExamDuration = remainingExamDuration;
 	}
 }

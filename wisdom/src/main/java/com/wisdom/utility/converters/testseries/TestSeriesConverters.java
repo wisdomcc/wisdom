@@ -49,8 +49,10 @@ public interface TestSeriesConverters {
 	
 	@Mappings({
 		@Mapping(target="testSeriesStatus", source="testSeriesStatus"),
-		@Mapping(target="enrollmentId", source="enrollmentId")
+		@Mapping(target="enrollmentId", source="enrollmentId"),
+		@Mapping(target="remainingExamDuration", source="remainingExamDuration")
 	})
-	public TestSeriesEnrollmentStatusBean convertTestSeriesToEnrollmentStatusBean(TestSeries testSeries, String testSeriesStatus, long enrollmentId);
+	public TestSeriesEnrollmentStatusBean convertTestSeriesToEnrollmentStatusBean(TestSeries testSeries, 
+			String testSeriesStatus, int remainingExamDuration, long enrollmentId);
 	
 }
