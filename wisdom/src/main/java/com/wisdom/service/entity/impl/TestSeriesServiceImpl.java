@@ -29,20 +29,20 @@ public class TestSeriesServiceImpl implements TestSeriesService {
 
 	@Autowired
 	private InsertService insertService;
-	
+
 	@Autowired
 	private UpdateService updateService;
-	
+
 	@Autowired
 	private FetchService fetchService;
-	
+
 	@Autowired
 	private TestSeriesConverters testSeriesConverters;
-	
+
 	@Override
 	public boolean updateTestSeries(List<TestSeriesUpdateBean> testSeriesUpdateBeans, String username)
 			throws UpdateException {
-		for(TestSeriesUpdateBean testSeriesUpdateBean : testSeriesUpdateBeans) {
+		for (TestSeriesUpdateBean testSeriesUpdateBean : testSeriesUpdateBeans) {
 			TestSeries testSeries = testSeriesConverters.convertBeanToEntity(testSeriesUpdateBean, username);
 			updateService.update(testSeries);
 		}
@@ -52,7 +52,7 @@ public class TestSeriesServiceImpl implements TestSeriesService {
 	@Override
 	public boolean insertTestSeries(List<TestSeriesInsertBean> testSeriesInsertBeans, String username)
 			throws UpdateException {
-		for(TestSeriesInsertBean testSeriesInsertBean : testSeriesInsertBeans) {
+		for (TestSeriesInsertBean testSeriesInsertBean : testSeriesInsertBeans) {
 			TestSeries testSeries = testSeriesConverters.convertBeanToEntity(testSeriesInsertBean, username);
 			insertService.insert(testSeries);
 		}
@@ -62,31 +62,36 @@ public class TestSeriesServiceImpl implements TestSeriesService {
 	@Override
 	public boolean insertTestSeriesQuestionMap(List<TestSeriesQuestionMapBean> testSeriesQuestionMapBeans,
 			String username) throws InsertException {
-		for(TestSeriesQuestionMapBean testSeriesQuestionMapBean : testSeriesQuestionMapBeans) {
-			TestSeriesQuestionMap testSeriesQuestionMap = testSeriesConverters.convertBeanToEntity(testSeriesQuestionMapBean, username);
+		for (TestSeriesQuestionMapBean testSeriesQuestionMapBean : testSeriesQuestionMapBeans) {
+			TestSeriesQuestionMap testSeriesQuestionMap = testSeriesConverters
+					.convertBeanToEntity(testSeriesQuestionMapBean, username);
 			insertService.insert(testSeriesQuestionMap);
 		}
 		return true;
 	}
-	
+
 	@Override
-	public boolean enrollTestSeries(List<TestSeriesEnrollmentBean> testSeriesEnrollmentBeans,
-			String username) throws InsertException {
-		for(TestSeriesEnrollmentBean testSeriesEnrollmentBean : testSeriesEnrollmentBeans) {
-			TestSeriesEnrollment testSeriesEnrollment = testSeriesConverters.convertBeanToEntity(testSeriesEnrollmentBean, username);
+	public boolean enrollTestSeries(List<TestSeriesEnrollmentBean> testSeriesEnrollmentBeans, String username)
+			throws InsertException {
+		for (TestSeriesEnrollmentBean testSeriesEnrollmentBean : testSeriesEnrollmentBeans) {
+			TestSeriesEnrollment testSeriesEnrollment = testSeriesConverters
+					.convertBeanToEntity(testSeriesEnrollmentBean, username);
 			insertService.insert(testSeriesEnrollment);
 		}
 		return true;
 	}
-	
+
 	@Override
-	public boolean submitTestSeries(List<TestSeriesAnswerBean> testSeriesAnswerBeans,
-			String username) throws InsertException {
-		for(TestSeriesAnswerBean testSeriesAnswerBean : testSeriesAnswerBeans) {
-			TestSeriesAnswer testSeriesAnswer = testSeriesConverters.convertBeanToEntity(testSeriesAnswerBean, username);
+	public boolean submitTestSeries(List<TestSeriesAnswerBean> testSeriesAnswerBeans, String username)
+			throws InsertException {
+		for (TestSeriesAnswerBean testSeriesAnswerBean : testSeriesAnswerBeans) {
+			TestSeriesAnswer testSeriesAnswer = testSeriesConverters.convertBeanToEntity(testSeriesAnswerBean,
+					username);
 			insertService.insert(testSeriesAnswer);
-			for(TestSeriesLinkedAnswer testSeriesLinkedAnswer : testSeriesAnswerBean.getLinkedAnswers()) {
-				insertService.insert(testSeriesLinkedAnswer);
+			if (testSeriesAnswerBean.getLinkedAnswers() != null) {
+				for (TestSeriesLinkedAnswer testSeriesLinkedAnswer : testSeriesAnswerBean.getLinkedAnswers()) {
+					insertService.insert(testSeriesLinkedAnswer);
+				}
 			}
 		}
 		return true;
@@ -101,7 +106,7 @@ public class TestSeriesServiceImpl implements TestSeriesService {
 	public List<TestSeriesEnrollmentStatusBean> fetchTestSeriesEnrollmentStatus(String username) throws FetchException {
 		return fetchService.getTestSeriesEnrollmentStatus(username);
 	}
-	
+
 	@Override
 	public List<TestSeriesAnswer> fetchTestSeriesAnswers(long testSeriesId, String username) throws FetchException {
 		return fetchService.fetch(testSeriesId, username);

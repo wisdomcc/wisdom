@@ -1,5 +1,6 @@
 package com.wisdom.entity.testseries;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,13 +10,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.wisdom.utility.json.JacksonUtil;
+
 @Entity
 @Table(name = "test_series_student_answer",
 		uniqueConstraints={
 	    @UniqueConstraint(columnNames = {"test_series_id", "username", "question_id"})
 	})
-public class TestSeriesAnswer {
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class TestSeriesAnswer implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 25L;
+	
 	@Id
 	@Column(name = "id")
 	private long id;
@@ -88,6 +100,11 @@ public class TestSeriesAnswer {
 	}
 	public void setLinkedAnswers(List<TestSeriesLinkedAnswer> linkedAnswers) {
 		this.linkedAnswers = linkedAnswers;
+	}
+	
+	@Override
+	public String toString() {
+		return JacksonUtil.toString(this);
 	}
 	
 }

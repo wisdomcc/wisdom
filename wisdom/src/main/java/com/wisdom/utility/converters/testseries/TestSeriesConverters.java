@@ -43,7 +43,8 @@ public interface TestSeriesConverters {
 	public TestSeriesEnrollment convertBeanToEntity(TestSeriesEnrollmentBean bean, String username);
 	
 	@Mappings({
-		@Mapping(target="username", source="username")
+		@Mapping(target="username", source="username"),
+		@Mapping(target="linkedAnswers", ignore=true)
 	})
 	public TestSeriesAnswer convertBeanToEntity(TestSeriesAnswerBean bean, String username);
 	

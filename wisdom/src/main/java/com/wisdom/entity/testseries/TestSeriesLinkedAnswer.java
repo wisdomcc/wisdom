@@ -1,5 +1,7 @@
 package com.wisdom.entity.testseries;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,9 +9,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.wisdom.utility.json.JacksonUtil;
+
 @Entity
 @Table(name = "test_series_student_linked_answer")
-public class TestSeriesLinkedAnswer {
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class TestSeriesLinkedAnswer implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 26L;
 
 	@Id
 	@Column(name = "id")
@@ -52,12 +65,6 @@ public class TestSeriesLinkedAnswer {
 	public void setTimeSpend(int timeSpend) {
 		this.timeSpend = timeSpend;
 	}
-	public TestSeriesAnswer getAnswerId() {
-		return answerId;
-	}
-	public void setAnswerId(TestSeriesAnswer answerId) {
-		this.answerId = answerId;
-	}
 	public int getNoOfTimesAnswerChanged() {
 		return noOfTimesAnswerChanged;
 	}
@@ -75,6 +82,11 @@ public class TestSeriesLinkedAnswer {
 	}
 	public void setQuestionId(long questionId) {
 		this.questionId = questionId;
+	}
+	
+	@Override
+	public String toString() {
+		return JacksonUtil.toString(this);
 	}
 	
 }
