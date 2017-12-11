@@ -16,10 +16,12 @@ import com.wisdom.entity.testseries.TestSeriesAnswer;
 import com.wisdom.entity.testseries.TestSeriesEnrollment;
 import com.wisdom.entity.testseries.TestSeriesLinkedAnswer;
 import com.wisdom.entity.testseries.TestSeriesQuestionMap;
+import com.wisdom.exception.DeleteException;
 import com.wisdom.exception.FetchException;
 import com.wisdom.exception.InsertException;
 import com.wisdom.exception.UpdateException;
 import com.wisdom.service.entity.TestSeriesService;
+import com.wisdom.service.utility.DeleteService;
 import com.wisdom.service.utility.FetchService;
 import com.wisdom.service.utility.InsertService;
 import com.wisdom.service.utility.UpdateService;
@@ -35,6 +37,9 @@ public class TestSeriesServiceImpl implements TestSeriesService {
 
 	@Autowired
 	private FetchService fetchService;
+
+	@Autowired
+	private DeleteService deleteService;
 
 	@Autowired
 	private TestSeriesConverters testSeriesConverters;
@@ -110,6 +115,17 @@ public class TestSeriesServiceImpl implements TestSeriesService {
 	@Override
 	public List<TestSeriesAnswer> fetchTestSeriesAnswers(long testSeriesId, String username) throws FetchException {
 		return fetchService.fetch(testSeriesId, username);
+	}
+
+	@Override
+	public boolean deleteTestSeriesQuestionMap(List<TestSeriesQuestionMapBean> testSeriesQuestionMapBeans,
+			String username) throws DeleteException {
+		for (TestSeriesQuestionMapBean testSeriesQuestionMapBean : testSeriesQuestionMapBeans) {
+			TestSeriesQuestionMap testSeriesQuestionMap = fetchService.getTestSeriesQuestionMap(
+					testSeriesQuestionMapBean.getTestSeriesId(), testSeriesQuestionMapBean.getQuestionId());
+			deleteService.delete(testSeriesQuestionMap);
+		}
+		return true;
 	}
 
 }

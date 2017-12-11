@@ -67,6 +67,11 @@ public class TestSeriesController {
 		return testSeriesService.insertTestSeriesQuestionMap(testSeriesQuestionMapBeanList, principal.getName());
 	}
 	
+	@RequestMapping(path = "/deletemap", method = RequestMethod.POST)
+	public boolean deleteTestSeriesQuestionMap(Principal principal, @RequestBody List<TestSeriesQuestionMapBean> testSeriesQuestionMapBeanList) {
+		return testSeriesService.deleteTestSeriesQuestionMap(testSeriesQuestionMapBeanList, principal.getName());
+	}
+	
 	@RequestMapping(path = "/insert", method = RequestMethod.POST)
 	public boolean insertTestSeries(Principal principal, @RequestBody List<TestSeriesInsertBean> testSeriesInsertBeanList) {
 		return testSeriesService.insertTestSeries(testSeriesInsertBeanList, principal.getName());

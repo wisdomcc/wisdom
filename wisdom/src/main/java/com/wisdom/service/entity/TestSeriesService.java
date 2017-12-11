@@ -10,6 +10,7 @@ import com.wisdom.bean.testseries.TestSeriesQuestionMapBean;
 import com.wisdom.bean.testseries.TestSeriesUpdateBean;
 import com.wisdom.entity.question.Question;
 import com.wisdom.entity.testseries.TestSeriesAnswer;
+import com.wisdom.exception.DeleteException;
 import com.wisdom.exception.FetchException;
 import com.wisdom.exception.InsertException;
 import com.wisdom.exception.UpdateException;
@@ -24,5 +25,6 @@ public interface TestSeriesService {
 	public List<Question> fetchTestSeriesQuestions(long testSeriesId) throws FetchException;
 	public List<TestSeriesEnrollmentStatusBean> fetchTestSeriesEnrollmentStatus(String username) throws FetchException;
 	public List<TestSeriesAnswer> fetchTestSeriesAnswers(long testSeriesId, String username) throws FetchException;
+	public boolean deleteTestSeriesQuestionMap(List<TestSeriesQuestionMapBean> testSeriesQuestionMapBeans, String username) throws DeleteException;
 	
 }

@@ -80,4 +80,10 @@ public class FetchServiceImpl implements FetchService {
 		return testSeriesAnswerDao.findByTestSeriesIdAndUsername(testSeriesId, username);
 	}
 
+	@Override
+	public TestSeriesQuestionMap getTestSeriesQuestionMap(long testSeriesId, long questionId)
+			throws FetchException {
+		return testSeriesQuestionMapDao.findByTestSeriesIdAndQuestionId(testSeriesId, questionId);
+	}
+
 }

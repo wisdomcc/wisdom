@@ -10,5 +10,6 @@ public interface TestSeriesQuestionMapDao extends CrudRepository<TestSeriesQuest
 
 	public List<TestSeriesQuestionMap> findByTestSeriesId(long testSeriesId);
 	public List<TestSeriesQuestionMap> findByQuestionId(long questionId);
+	public TestSeriesQuestionMap findByTestSeriesIdAndQuestionId(long testSeriesId, long questionId);
 
 }

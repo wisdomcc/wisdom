@@ -32,11 +32,13 @@ import com.wisdom.service.entity.impl.AnswerServiceImpl;
 import com.wisdom.service.entity.impl.QuestionServiceImpl;
 import com.wisdom.service.entity.impl.TestSeriesServiceImpl;
 import com.wisdom.service.utility.AmazonS3Service;
+import com.wisdom.service.utility.DeleteService;
 import com.wisdom.service.utility.FetchService;
 import com.wisdom.service.utility.InsertService;
 import com.wisdom.service.utility.UpdateService;
 import com.wisdom.service.utility.UploadService;
 import com.wisdom.service.utility.impl.AmazonS3ServiceImpl;
+import com.wisdom.service.utility.impl.DeleteServiceImpl;
 import com.wisdom.service.utility.impl.FetchServiceImpl;
 import com.wisdom.service.utility.impl.InsertServiceImpl;
 import com.wisdom.service.utility.impl.UpdateServiceImpl;
@@ -101,6 +103,11 @@ public class WisdomConfiguration {
 	@Bean
 	public InsertService insertService() {
 		return new InsertServiceImpl();
+	}
+	
+	@Bean
+	public DeleteService deleteService() {
+		return new DeleteServiceImpl();
 	}
 	
 	@Bean
